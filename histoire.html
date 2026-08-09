@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Notre histoire — AUREL</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="entete pose">
+  <a href="index.html" class="logo">Aurel</a>
+  <nav class="nav">
+    <a class="lien-bureau" href="boutique.html">Boutique</a>
+    <a class="lien-bureau" href="index.html#archive">Archive</a>
+    <a class="lien-bureau" href="histoire.html" aria-current="page">Notre histoire</a>
+    <button class="burger" id="burger" aria-controls="menu">Menu</button>
+    <a href="#" aria-label="Panier, 0 article">Panier (0)</a>
+  </nav>
+</header>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <a href="index.html">Accueil</a>
+  <a href="boutique.html">Boutique</a>
+  <a href="index.html#archive">Archive</a>
+  <a href="histoire.html">Notre histoire</a>
+  <span class="etiquette">Instagram · @aurelstudio._</span>
+</div>
+
+
+<main class="section boutique">
+
+  <div style="margin-bottom:clamp(20px,4vw,32px)">
+    <span class="etiquette">Aurel Studio</span>
+    <h1 class="titre-page" style="margin-top:14px">Notre<br>histoire</h1>
+  </div>
+
+  <dl class="dossier">
+    <div class="entree">
+      <dt class="etiquette">Méthode</dt>
+      <dd>
+        <p>Deux personnes. Un dessin, plusieurs essais, jusqu'à ce que ce soit juste.
+        Les dessins sont signés Tristan, en école de graphisme.</p>
+      </dd>
+    </div>
+    <div class="entree">
+      <dt class="etiquette">Lieu</dt>
+      <dd><p>Bassin d'Arcachon.</p></dd>
+    </div>
+    <div class="entree">
+      <dt class="etiquette">Diffusion</dt>
+      <dd><p>Instagram, bouche-à-oreille. Pas de boutique, pas de catalogue permanent.</p></dd>
+    </div>
+    <div class="entree">
+      <dt class="etiquette">01 — Madame</dt>
+      <dd><p>25 décembre 2025. Écoulée en moins de deux semaines.</p></dd>
+    </div>
+    <div class="entree">
+      <dt class="etiquette">02 — Fleur Bleue</dt>
+      <dd><p>Été 2026. Manches revues, taille L ajoutée — à l'écoute de ce qui est
+        revenu sur Madame.</p></dd>
+    </div>
+    <div class="entree">
+      <dt class="etiquette">Tirage</dt>
+      <dd><p>Aucune réimpression, jamais.</p></dd>
+    </div>
+  </dl>
+
+</main>
+
+<footer class="pied">
+  <div class="pied-haut">
+    <span class="pied-logo">Aurel</span>
+    <div class="colonnes">
+      <div>
+        <span class="etiquette">Aurel</span>
+        <ul>
+          <li><a href="histoire.html">Notre histoire</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="etiquette">Boutique</span>
+        <ul>
+          <li><a href="produit.html">Fleur Bleue</a></li>
+          <li><a class="lien-bureau" href="index.html#archive">Archive</a></li>
+          <li><a class="lien-bureau" href="boutique.html">Guide des tailles</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="etiquette">Aide</span>
+        <ul>
+          <li><a href="#">Livraison</a></li>
+          <li><a href="#">Retours</a></li>
+          <li><a href="#">Nous écrire</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="etiquette">Suivre</span>
+        <ul>
+          <li><a href="https://instagram.com/aurelstudio._">Instagram</a></li>
+          <li><a href="#">Alerte drop</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="pied-bas">
+    <span class="etiquette">Aurel Studio — Bassin d'Arcachon</span>
+    <span class="etiquette">Mentions légales · CGV · Confidentialité</span>
+  </div>
+</footer>
+
+<script>
+// Menu mobile
+const menu = document.getElementById('menu');
+const burger = document.getElementById('burger');
+burger.addEventListener('click', () => {
+  const ouvert = menu.dataset.ouvert === 'true';
+  menu.dataset.ouvert = String(!ouvert);
+  menu.setAttribute('aria-hidden', String(ouvert));
+  burger.textContent = ouvert ? 'Menu' : 'Fermer';
+  document.body.classList.toggle('bloque', !ouvert);
+});
+</script>
+</body>
+</html>

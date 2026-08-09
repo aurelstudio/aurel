@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fleur Bleue — l'histoire de l'édition — AUREL</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="entete pose">
+  <a href="index.html" class="logo">Aurel</a>
+  <nav class="nav">
+    <a class="lien-bureau" href="boutique.html">Boutique</a>
+    <a class="lien-bureau" href="index.html#archive">Archive</a>
+    <a class="lien-bureau" href="histoire.html">Notre histoire</a>
+    <button class="burger" id="burger" aria-controls="menu">Menu</button>
+    <a href="#" aria-label="Panier, 0 article">Panier (0)</a>
+  </nav>
+</header>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <a href="index.html">Accueil</a>
+  <a href="boutique.html">Boutique</a>
+  <a href="index.html#archive">Archive</a>
+  <a href="histoire.html">Notre histoire</a>
+  <span class="etiquette">Instagram · @aurelstudio._</span>
+</div>
+
+
+<main class="section boutique" style="padding-bottom:0">
+
+  <div class="plaque">
+    <svg class="arc" viewBox="0 0 640 128" role="img" aria-label="Fleur Bleue">
+      <path id="courbe3" d="M 30 235 A 320 320 0 0 1 610 235" fill="none"/>
+      <text><textPath href="#courbe3" startOffset="50%" text-anchor="middle">FLEUR BLEUE</textPath></text>
+    </svg>
+    <span class="signature">une nuit d'été</span>
+  </div>
+
+  <div class="recit">
+    <p>Avoir la fleur bleue, c'est une expression qu'on n'emploie plus beaucoup.
+      Être sentimental, croire encore aux histoires, aimer un peu trop et un peu vite.</p>
+    <p>Un bouquet dessiné au trait, dans le dos — discret, comme on garde certaines
+      choses pour soi.</p>
+    <p>La suite de Madame. Un visage, puis ce qu'on ressent pour lui.</p>
+    <a href="produit.html" class="lien-histoire">Voir la pièce →</a>
+  </div>
+
+</main>
+
+<footer class="pied" style="margin-top:clamp(64px,10vw,132px)">
+  <div class="pied-haut">
+    <span class="pied-logo">Aurel</span>
+    <div class="colonnes">
+      <div>
+        <span class="etiquette">Aurel</span>
+        <ul>
+          <li><a href="histoire.html">Notre histoire</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="etiquette">Boutique</span>
+        <ul>
+          <li><a href="produit.html">Fleur Bleue</a></li>
+          <li><a class="lien-bureau" href="index.html#archive">Archive</a></li>
+          <li><a class="lien-bureau" href="boutique.html">Guide des tailles</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="etiquette">Aide</span>
+        <ul>
+          <li><a href="#">Livraison</a></li>
+          <li><a href="#">Retours</a></li>
+          <li><a href="#">Nous écrire</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="etiquette">Suivre</span>
+        <ul>
+          <li><a href="https://instagram.com/aurelstudio._">Instagram</a></li>
+          <li><a href="#">Alerte drop</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="pied-bas">
+    <span class="etiquette">Aurel Studio — Bassin d'Arcachon</span>
+    <span class="etiquette">Mentions légales · CGV · Confidentialité</span>
+  </div>
+</footer>
+
+<script>
+// Menu mobile
+const menu = document.getElementById('menu');
+const burger = document.getElementById('burger');
+burger.addEventListener('click', () => {
+  const ouvert = menu.dataset.ouvert === 'true';
+  menu.dataset.ouvert = String(!ouvert);
+  menu.setAttribute('aria-hidden', String(ouvert));
+  burger.textContent = ouvert ? 'Menu' : 'Fermer';
+  document.body.classList.toggle('bloque', !ouvert);
+});
+</script>
+</body>
+</html>

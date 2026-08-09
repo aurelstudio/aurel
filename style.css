@@ -381,3 +381,21 @@ details .corps{
   .galerie figure{flex:0 0 100%;scroll-snap-align:start}
   .campagne{grid-template-columns:1fr}
 }
+
+/* ---------- page Notre histoire (fiche façon dossier) ---------- */
+.dossier{display:flex;flex-direction:column;max-width:56ch;margin-top:clamp(28px,5vw,56px)}
+.dossier .entree{padding:22px 0;border-top:1px solid var(--trait)}
+.dossier .entree:last-child{border-bottom:1px solid var(--trait)}
+.dossier .entree .etiquette{display:block;margin-bottom:10px}
+.dossier .entree p{font-size:14px;line-height:1.85;color:#4A4A4A;font-weight:300;max-width:44ch}
+
+/* ---------- page récit de collection (ex. Fleur Bleue) ---------- */
+.recit{max-width:52ch;margin:0 auto;text-align:center}
+.recit p{font-size:14px;line-height:1.95;color:#4A4A4A;font-weight:300;margin-bottom:24px}
+.recit p:last-child{margin-bottom:0}
+.lien-histoire{
+  display:inline-block;margin-top:30px;
+  font-family:var(--util);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  border-bottom:1px solid currentColor;padding-bottom:3px;
+}
+.lien-histoire:hover{color:var(--accent)}
