@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AUREL — Not just urban</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="entete" id="entete">
+  <a href="index.html" class="logo">Aurel</a>
+  <nav class="nav">
+    <a class="lien-bureau" href="boutique.html">Boutique</a>
+    <a class="lien-bureau" href="#archive">Archive</a>
+    <a class="lien-bureau" href="#atelier">Atelier</a>
+    <button class="burger" id="burger" aria-controls="menu">Menu</button>
+    <a href="#" aria-label="Panier, 0 article">Panier (0)</a>
+  </nav>
+</header>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <a href="index.html">Accueil</a>
+  <a href="boutique.html">Boutique</a>
+  <a href="index.html#archive">Archive</a>
+  <a href="index.html#atelier">Atelier</a>
+  <span class="etiquette">Instagram · @aurelstudio._</span>
+</div>
+
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <img src="img/fb-hero.jpg" alt="T-shirt Fleur Bleue porté de dos devant une Méhari blanche">
+  <div class="hero-pied">
+    <span class="etiquette">Collection 02 — Été 2026<span class="petit-masque"> · Tirage limité</span></span>
+    <span class="defiler etiquette"><i class="barre"></i>Défiler</span>
+  </div>
+</section>
+
+<!-- ══ EN VENTE ══ -->
+<section class="section" id="vente">
+  <div class="entete-section reveal">
+    <span class="etiquette">En vente</span>
+    <span class="etiquette">02 / Fleur Bleue</span>
+  </div>
+
+  <div class="plaque reveal">
+    <svg class="arc" viewBox="0 0 640 128" role="img" aria-label="Fleur Bleue">
+      <path id="courbe" d="M 30 235 A 320 320 0 0 1 610 235" fill="none"/>
+      <text><textPath href="#courbe" startOffset="50%" text-anchor="middle">FLEUR BLEUE</textPath></text>
+    </svg>
+    <span class="signature">une nuit d'été</span>
+  </div>
+
+  <div class="produit-une">
+    <a href="produit.html" class="visuel reveal">
+      <img src="img/fb-garage.jpg" alt="T-shirt Fleur Bleue, sérigraphie bleue au dos" style="object-position:34% 50%">
+    </a>
+    <div class="reveal">
+      <span class="etiquette">Édition Fleur Bleue</span>
+      <h2 class="produit-titre">T-shirt<br>Fleur&nbsp;Bleue</h2>
+      <p class="prix">35,00 € <span class="accent">·</span> S — XL</p>
+      <p class="descriptif">
+        Coton épais, coupe droite. Bouquet dessiné au trait, sérigraphié bleu dans
+        le dos, signé <em>une nuit d'été</em>. Le monogramme Aurel Studio est repris
+        en petit sur la poitrine.
+      </p>
+      <a href="produit.html" class="bouton">Voir la pièce <span>→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MANIFESTE ══ -->
+<section class="manifeste" id="atelier">
+  <h2 class="reveal">Not just<br>urban</h2>
+  <p class="reveal">
+    Deux éditions par an, produites en série courte depuis le Bassin d'Arcachon.
+    Chaque pièce porte un dessin au trait, une phrase, et rien d'autre.
+    Quand l'édition est écoulée, elle ne revient pas.
+  </p>
+</section>
+
+<!-- ══ ARCHIVE ══ -->
+<section class="section section--sombre archive" id="archive">
+  <div class="entete-section reveal">
+    <span class="etiquette">Archive</span>
+    <span class="etiquette">01 / Madame — Décembre 2025</span>
+  </div>
+
+  <div class="plaque reveal">
+    <svg class="arc arc--court" viewBox="0 0 640 150" role="img" aria-label="Madame">
+      <path id="courbe2" d="M 30 235 A 320 320 0 0 1 610 235" fill="none"/>
+      <text><textPath href="#courbe2" startOffset="50%" text-anchor="middle">MADAME</textPath></text>
+    </svg>
+    <span class="signature">édition épuisée</span>
+  </div>
+
+  <div class="archive-grille reveal">
+    <figure><img src="img/md-cuisine.jpg" alt="T-shirts Madame avant expédition"></figure>
+    <figure><img src="img/md-sunset.jpg" alt="Quatre t-shirts Madame portés au coucher du soleil"></figure>
+    <figure><img src="img/md-bilbao.jpg" alt="T-shirts Madame portés à Bilbao"></figure>
+  </div>
+
+  <div style="margin-top:clamp(30px,5vw,52px);max-width:44ch">
+    <h3 class="mot" style="font-size:clamp(20px,2.6vw,30px)">Édition Madame</h3>
+    <p class="descriptif" style="color:#9A9A9A">
+      Première édition, sortie le 25 décembre 2025 et écoulée en quelques jours.
+      Visage au trait blanc, bouche rouge, lettrage en arc dans le dos.
+    </p>
+    <span class="epuise">Épuisé</span>
+  </div>
+</section>
+
+<!-- ══ PIED ══ -->
+<footer class="pied">
+  <div class="pied-haut">
+    <span class="pied-logo">Aurel</span>
+    <div class="colonnes">
+      <div>
+        <span class="etiquette">Boutique</span>
+        <ul>
+          <li><a href="produit.html">Fleur Bleue</a></li>
+          <li><a class="lien-bureau" href="#archive">Archive</a></li>
+          <li><a class="lien-bureau" href="boutique.html">Guide des tailles</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="etiquette">Aide</span>
+        <ul>
+          <li><a href="#">Livraison</a></li>
+          <li><a href="#">Retours</a></li>
+          <li><a href="#">Nous écrire</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="etiquette">Suivre</span>
+        <ul>
+          <li><a href="https://instagram.com/aurelstudio._">Instagram</a></li>
+          <li><a href="#">Alerte drop</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="pied-bas">
+    <span class="etiquette">Aurel Studio — Bassin d'Arcachon</span>
+    <span class="etiquette">Mentions légales · CGV · Confidentialité</span>
+  </div>
+</footer>
+
+<script>
+// Header : transparent sur le hero, opaque ensuite
+const entete = document.getElementById('entete');
+const seuil = () => window.innerHeight * 0.82;
+const majEntete = () => entete.classList.toggle('pose', window.scrollY > seuil());
+majEntete();
+addEventListener('scroll', majEntete, {passive:true});
+
+// Révélation au défilement
+const obs = new IntersectionObserver((entrees) => {
+  entrees.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vu'); obs.unobserve(e.target); } });
+}, {threshold:0.12});
+document.querySelectorAll('.reveal').forEach((el,i) => {
+  el.style.transitionDelay = (i % 3) * 90 + 'ms';
+  obs.observe(el);
+});
+</script>
+
+<script>
+// Menu mobile
+const menu = document.getElementById('menu');
+const burger = document.getElementById('burger');
+burger.addEventListener('click', () => {
+  const ouvert = menu.dataset.ouvert === 'true';
+  menu.dataset.ouvert = String(!ouvert);
+  menu.setAttribute('aria-hidden', String(ouvert));
+  burger.textContent = ouvert ? 'Menu' : 'Fermer';
+  document.body.classList.toggle('bloque', !ouvert);
+});
+</script>
+</body>
+</html>

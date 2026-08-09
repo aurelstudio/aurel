@@ -1,0 +1,383 @@
+/* ============================================================
+   AUREL — maquette
+   Le site est un contenant neutre : noir, blanc, typographie.
+   Chaque collection injecte sa propre couleur via --accent.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@200;300;400;500;700;900&family=Courier+Prime:wght@400;700&family=Sacramento&display=swap');
+
+:root{
+  --encre:#0B0B0B;
+  --papier:#FFFFFF;
+  --trait:#DCDCDC;
+  --gris:#8A8A8A;
+
+  /* accents de collection */
+  --bleu:#2E4B8F;   /* Fleur Bleue */
+  --rouge:#D22A1E;  /* Madame */
+  --accent:var(--bleu);
+
+  --display:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --util:'Courier Prime','Courier New',monospace;
+  --main:'Sacramento',cursive;
+
+  --marge:clamp(20px,4vw,56px);
+  --header:58px;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--papier);
+  color:var(--encre);
+  font-family:var(--display);
+  font-weight:300;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{display:block;width:100%;height:100%;object-fit:cover}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+:focus-visible{outline:1px solid var(--accent);outline-offset:3px}
+
+/* ---------- primitives typographiques ---------- */
+.etiquette{
+  font-family:var(--util);
+  font-size:10px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--gris);
+}
+.mot{
+  font-family:var(--display);
+  font-weight:300;
+  text-transform:uppercase;
+  letter-spacing:.34em;
+}
+.signature{
+  font-family:var(--main);
+  font-weight:400;
+  letter-spacing:.02em;
+  text-transform:none;
+}
+.trait{height:1px;background:var(--trait);border:0}
+
+/* ---------- header ---------- */
+.entete{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:var(--header);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 var(--marge);
+  color:#fff;
+  transition:background .4s ease,color .4s ease,border-color .4s ease;
+  border-bottom:1px solid transparent;
+}
+.entete.pose{
+  background:var(--papier);
+  color:var(--encre);
+  border-bottom-color:var(--trait);
+}
+.logo{
+  font-family:var(--display);
+  font-weight:300;
+  font-size:15px;
+  letter-spacing:.55em;
+  text-transform:uppercase;
+  padding-left:.55em; /* compense le tracking à droite */
+}
+.nav{display:flex;gap:clamp(16px,3vw,40px);align-items:center}
+.nav a{
+  font-family:var(--util);
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  position:relative;padding:4px 0;
+}
+.nav a::after{
+  content:'';position:absolute;left:0;bottom:0;
+  width:0;height:1px;background:currentColor;transition:width .3s ease;
+}
+.nav a:hover::after,.nav a[aria-current]::after{width:100%}
+
+/* ---------- arc (signature — repris de la sérigraphie dos) ---------- */
+.arc{width:min(78vw,560px);overflow:visible;display:block}
+.arc text{
+  font-family:var(--display);
+  font-weight:400;
+  font-size:46px;
+  letter-spacing:.16em;
+  fill:currentColor;
+}
+/* plaque de titre : le lettrage en arc + la phrase manuscrite,
+   exactement la composition sérigraphiée au dos des pièces */
+.plaque{
+  display:flex;flex-direction:column;align-items:center;
+  color:var(--accent);text-align:center;
+  margin-bottom:clamp(34px,6vw,66px);
+}
+.plaque .signature{font-size:clamp(26px,3.6vw,40px);margin-top:-14px}
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative;height:100svh;min-height:560px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--encre);overflow:hidden;
+}
+.hero img{position:absolute;inset:0;object-position:50% 42%;opacity:.92}
+.hero::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.42) 0%,rgba(0,0,0,.06) 34%,rgba(0,0,0,.05) 62%,rgba(0,0,0,.5) 100%);
+}
+.hero-contenu{
+  position:relative;z-index:2;color:#fff;text-align:center;
+  display:flex;flex-direction:column;align-items:center;
+  transform:translateY(-4%);
+}
+.hero-contenu .signature{
+  font-size:clamp(30px,5vw,52px);
+  margin-top:-6px;
+  text-shadow:0 1px 24px rgba(0,0,0,.35);
+}
+.hero-pied{
+  position:absolute;z-index:2;bottom:22px;left:var(--marge);right:var(--marge);
+  display:flex;justify-content:space-between;align-items:flex-end;
+  color:#fff;
+}
+.hero-pied .etiquette{color:rgba(255,255,255,.82)}
+.defiler{display:flex;align-items:center;gap:10px}
+.defiler .barre{
+  display:block;width:44px;height:1px;background:rgba(255,255,255,.6);
+  transform-origin:left;animation:glisse 2.6s ease-in-out infinite;
+}
+@keyframes glisse{0%,100%{transform:scaleX(.3)}50%{transform:scaleX(1)}}
+
+/* ---------- sections ---------- */
+.section{padding:clamp(64px,10vw,132px) var(--marge)}
+.section--sombre{background:var(--encre);color:var(--papier)}
+.section--sombre .etiquette{color:#7C7C7C}
+.entete-section{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding-bottom:14px;border-bottom:1px solid var(--trait);
+  margin-bottom:clamp(28px,5vw,56px);
+}
+.section--sombre .entete-section{border-bottom-color:#2A2A2A}
+
+/* ---------- bloc produit (accueil) ---------- */
+.produit-une{
+  display:grid;grid-template-columns:1.05fr .95fr;
+  gap:clamp(24px,5vw,72px);align-items:center;
+}
+.produit-une .visuel{aspect-ratio:4/5;overflow:hidden;background:#F2F2F2}
+.produit-une .visuel img{transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.produit-une .visuel:hover img{transform:scale(1.03)}
+.produit-titre{
+  font-size:clamp(28px,4.4vw,54px);
+  font-weight:200;letter-spacing:.1em;text-transform:uppercase;line-height:1.06;
+}
+.prix{font-family:var(--util);font-size:15px;letter-spacing:.12em;margin-top:18px}
+.descriptif{
+  max-width:38ch;margin-top:22px;font-size:14px;line-height:1.85;
+  font-weight:300;color:#4A4A4A;
+}
+.accent{color:var(--accent)}
+
+/* ---------- boutons ---------- */
+.bouton{
+  display:inline-flex;align-items:center;justify-content:center;gap:14px;
+  width:100%;padding:19px 26px;margin-top:30px;
+  background:var(--encre);color:#fff;
+  font-family:var(--util);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  transition:background .3s ease;
+}
+.bouton:hover{background:var(--accent)}
+.bouton[disabled]{
+  background:transparent;color:var(--gris);
+  border:1px solid var(--trait);cursor:not-allowed;
+}
+.bouton--fin{
+  width:auto;background:none;color:inherit;padding:0;margin:0;
+  border-bottom:1px solid currentColor;padding-bottom:3px;
+}
+.bouton--fin:hover{background:none;color:var(--accent)}
+
+/* ---------- manifeste ---------- */
+.manifeste{text-align:center;padding:clamp(80px,13vw,170px) var(--marge)}
+.manifeste h2{
+  font-size:clamp(42px,11vw,158px);
+  font-weight:200;letter-spacing:-.01em;line-height:.9;text-transform:uppercase;
+}
+.manifeste p{
+  max-width:44ch;margin:34px auto 0;
+  font-size:14px;line-height:2;color:#4A4A4A;font-weight:300;
+}
+
+/* ---------- archive ---------- */
+.archive{--accent:var(--rouge)}
+.archive-grille{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.6vw,20px)}
+.archive-grille figure{position:relative;aspect-ratio:3/4;overflow:hidden;background:#151515}
+.archive-grille img{filter:grayscale(.28);transition:filter .6s ease,transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.archive-grille figure:hover img{filter:grayscale(0);transform:scale(1.04)}
+.epuise{
+  display:inline-block;margin-top:18px;padding:6px 12px;
+  border:1px solid var(--rouge);color:var(--rouge);
+  font-family:var(--util);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+}
+
+/* ---------- boutique ---------- */
+.boutique{padding-top:calc(var(--header) + clamp(48px,8vw,96px))}
+.titre-page{
+  font-size:clamp(40px,10vw,150px);font-weight:200;
+  letter-spacing:.04em;line-height:.95;text-transform:uppercase;
+}
+.ligne{
+  display:grid;grid-template-columns:56px 1.15fr 1fr;
+  gap:clamp(18px,4vw,60px);align-items:center;
+  padding:clamp(26px,4vw,44px) 0;border-bottom:1px solid var(--trait);
+}
+.ligne:first-of-type{border-top:1px solid var(--trait)}
+.ligne .num{font-family:var(--util);font-size:11px;letter-spacing:.14em;color:var(--gris)}
+.ligne .vignette{aspect-ratio:4/5;overflow:hidden;background:#F2F2F2}
+.ligne .vignette img{transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.ligne:hover .vignette img{transform:scale(1.04)}
+.ligne h2{
+  font-size:clamp(22px,3.4vw,42px);font-weight:200;
+  letter-spacing:.1em;text-transform:uppercase;line-height:1.1;
+}
+.ligne .meta{margin-top:14px;display:flex;flex-direction:column;gap:9px}
+.ligne--epuise .vignette img{filter:grayscale(1);opacity:.55}
+.ligne--epuise h2{color:var(--gris)}
+
+/* ---------- fiche produit ---------- */
+.fiche{
+  display:grid;grid-template-columns:1fr 1fr;
+  padding-top:var(--header);align-items:start;
+}
+.galerie{display:flex;flex-direction:column;gap:4px;background:#F2F2F2}
+.galerie figure{aspect-ratio:4/5;overflow:hidden}
+.panneau{
+  position:sticky;top:var(--header);
+  min-height:calc(100svh - var(--header));
+  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(40px,6vw,80px) clamp(24px,5vw,72px);
+}
+.fiche-titre{
+  font-size:clamp(26px,3.4vw,44px);font-weight:200;
+  letter-spacing:.11em;text-transform:uppercase;line-height:1.1;margin-top:14px;
+}
+.tailles{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.taille{
+  min-width:52px;padding:13px 0;text-align:center;
+  border:1px solid var(--trait);
+  font-family:var(--util);font-size:11px;letter-spacing:.12em;
+  transition:border-color .25s ease,color .25s ease;
+}
+.taille:hover{border-color:var(--encre)}
+.taille[aria-pressed="true"]{background:var(--encre);color:#fff;border-color:var(--encre)}
+.taille[disabled]{color:#CFCFCF;cursor:not-allowed;text-decoration:line-through}
+.taille[disabled]:hover{border-color:var(--trait)}
+.bloc{margin-top:34px}
+.bloc + .bloc{margin-top:26px}
+details{border-top:1px solid var(--trait)}
+details summary{
+  list-style:none;cursor:pointer;padding:17px 0;
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--util);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:'+';font-size:14px;transition:transform .3s ease}
+details[open] summary::after{content:'–'}
+details .corps{
+  padding-bottom:19px;font-size:13px;line-height:1.95;color:#4A4A4A;font-weight:300;
+}
+.paiement{
+  margin-top:14px;display:flex;align-items:center;gap:9px;
+  font-family:var(--util);font-size:9.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--gris);
+}
+.campagne{display:grid;grid-template-columns:repeat(2,1fr);gap:4px}
+.campagne figure{aspect-ratio:3/4;overflow:hidden;background:#F2F2F2}
+
+/* ---------- pied de page ---------- */
+.pied{
+  background:var(--encre);color:var(--papier);
+  padding:clamp(52px,8vw,96px) var(--marge) 30px;
+}
+.pied-haut{
+  display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;
+  padding-bottom:44px;border-bottom:1px solid #262626;
+}
+.pied-logo{font-size:clamp(30px,7vw,86px);font-weight:200;letter-spacing:.3em;text-transform:uppercase;padding-left:.3em}
+.colonnes{display:flex;gap:clamp(36px,7vw,96px);flex-wrap:wrap}
+.colonnes ul{list-style:none;display:flex;flex-direction:column;gap:11px;margin-top:15px}
+.colonnes a{font-size:13px;font-weight:300;color:#C8C8C8;transition:color .25s ease}
+.colonnes a:hover{color:#fff}
+.pied-bas{
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  padding-top:22px;
+}
+
+/* ---------- révélation au défilement ---------- */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.vu{opacity:1;transform:none}
+
+/* ---------- responsive ---------- */
+@media(max-width:900px){
+  .produit-une{grid-template-columns:1fr}
+  .fiche{grid-template-columns:1fr}
+  .panneau{position:static;min-height:0}
+  .archive-grille{grid-template-columns:1fr 1fr}
+  .archive-grille figure:last-child{display:none}
+  .ligne{grid-template-columns:1fr;gap:18px}
+  .ligne .num{margin-bottom:-6px}
+  .ligne .vignette{aspect-ratio:16/11}
+  .arc text{font-size:54px}
+  .nav{gap:16px}
+  .logo{font-size:13px;letter-spacing:.42em}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01ms!important}
+  .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+
+/* noms courts : on élargit le corps pour que l'arc garde la même envergure */
+.arc--court text{font-size:68px;letter-spacing:.2em}
+
+/* ---------- boutique : proportion des vignettes ---------- */
+.ligne .vignette{max-width:440px}
+
+/* ---------- menu mobile ---------- */
+.burger{display:none;font-family:var(--util);font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+.menu{
+  position:fixed;inset:0;z-index:99;background:var(--encre);color:#fff;
+  display:flex;flex-direction:column;justify-content:center;gap:6px;
+  padding:0 var(--marge);
+  opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s;
+}
+.menu[data-ouvert="true"]{opacity:1;visibility:visible}
+.menu a{
+  font-size:34px;font-weight:200;letter-spacing:.14em;text-transform:uppercase;
+  padding:9px 0;border-bottom:1px solid #232323;
+}
+.menu .etiquette{margin-top:34px;color:#6E6E6E}
+
+@media(max-width:760px){
+  .nav .lien-bureau{display:none}
+  .burger{display:block}
+  .entete{background:var(--papier);color:var(--encre);border-bottom-color:var(--trait)}
+  .petit-masque{display:none}
+  .hero-pied{bottom:16px}
+  .hero-pied .etiquette{font-size:9px;letter-spacing:.14em}
+  body.bloque{overflow:hidden}
+}
+
+/* fiche produit sur mobile : galerie en défilement horizontal
+   pour que le bouton d'achat reste juste sous la première image */
+@media(max-width:900px){
+  .galerie{
+    flex-direction:row;overflow-x:auto;gap:0;
+    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .galerie::-webkit-scrollbar{display:none}
+  .galerie figure{flex:0 0 100%;scroll-snap-align:start}
+  .campagne{grid-template-columns:1fr}
+}

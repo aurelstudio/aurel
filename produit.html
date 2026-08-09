@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>T-shirt Fleur Bleue — AUREL</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="entete pose">
+  <a href="index.html" class="logo">Aurel</a>
+  <nav class="nav">
+    <a class="lien-bureau" href="boutique.html">Boutique</a>
+    <a class="lien-bureau" href="index.html#archive">Archive</a>
+    <a class="lien-bureau" href="index.html#atelier">Atelier</a>
+    <button class="burger" id="burger" aria-controls="menu">Menu</button>
+    <a href="#" aria-label="Panier, 0 article" id="lienPanier">Panier (0)</a>
+  </nav>
+</header>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <a href="index.html">Accueil</a>
+  <a href="boutique.html">Boutique</a>
+  <a href="index.html#archive">Archive</a>
+  <a href="index.html#atelier">Atelier</a>
+  <span class="etiquette">Instagram · @aurelstudio._</span>
+</div>
+
+
+<main>
+<section class="fiche">
+
+  <!-- Galerie -->
+  <div class="galerie">
+    <figure><img src="img/fb-garage.jpg" alt="T-shirt Fleur Bleue vu de dos, sérigraphie bleue"></figure>
+    <figure><img src="img/fb-face.jpg" alt="T-shirt Fleur Bleue porté de face, monogramme Aurel Studio"></figure>
+    <figure><img src="img/fb-bike.jpg" alt="Détail de la sérigraphie dans le dos"></figure>
+  </div>
+
+  <!-- Panneau d'achat -->
+  <div class="panneau">
+    <span class="etiquette">Collection 02 — Fleur Bleue</span>
+    <h1 class="fiche-titre">T-shirt<br>Fleur Bleue</h1>
+    <p class="prix">35,00 €</p>
+
+    <div class="bloc">
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <span class="etiquette">Taille</span>
+        <button class="etiquette" style="text-decoration:underline;text-underline-offset:3px">Guide des tailles</button>
+      </div>
+      <div class="tailles" role="group" aria-label="Choisir une taille">
+        <button class="taille" aria-pressed="false">S</button>
+        <button class="taille" aria-pressed="false">M</button>
+        <button class="taille" aria-pressed="false">L</button>
+        <button class="taille" disabled aria-disabled="true">XL</button>
+      </div>
+      <p class="etiquette" style="margin-top:12px;text-transform:none;letter-spacing:.06em">
+        Coupe droite. Prendre sa taille habituelle.
+      </p>
+    </div>
+
+    <button class="bouton" id="acheter">Acheter — 35,00 €</button>
+    <p class="paiement">Paiement sécurisé par Stripe · Carte, Apple Pay, Google Pay</p>
+
+    <div class="bloc">
+      <details open>
+        <summary>La pièce</summary>
+        <div class="corps">
+          Coton épais 100 %, coupe droite légèrement ample, col côtelé.
+          Bouquet dessiné au trait et sérigraphié bleu dans le dos, surmonté du
+          lettrage <em>Fleur Bleue</em> en arc et signé <em>une nuit d'été</em>.
+          Monogramme Aurel Studio sérigraphié sur la poitrine.
+        </div>
+      </details>
+      <details>
+        <summary>Édition</summary>
+        <div class="corps">
+          Deuxième édition, série courte. Aucune réimpression une fois l'édition écoulée.
+        </div>
+      </details>
+      <details>
+        <summary>Livraison &amp; retours</summary>
+        <div class="corps">
+          Expédition sous 3 jours ouvrés depuis le Bassin d'Arcachon.
+          Colissimo suivi, 4,90 € en France, offert dès 70 €.
+          Retour possible sous 14 jours, pièce non portée.
+        </div>
+      </details>
+      <details>
+        <summary>Entretien</summary>
+        <div class="corps">
+          Lavage à 30 °C sur l'envers. Pas de sèche-linge, pas de repassage sur la sérigraphie.
+        </div>
+      </details>
+    </div>
+  </div>
+
+</section>
+
+<!-- Campagne -->
+<section class="section" style="padding-bottom:0">
+  <div class="entete-section">
+    <span class="etiquette">Campagne</span>
+    <span class="etiquette">Été 2026 — Bassin d'Arcachon</span>
+  </div>
+</section>
+<div class="campagne">
+  <figure><img src="img/fb-hero.jpg" alt="T-shirt Fleur Bleue devant une Méhari blanche"></figure>
+  <figure><img src="img/fb-carreaux.jpg" alt="T-shirt Fleur Bleue porté sur une terrasse à carreaux"></figure>
+</div>
+
+<!-- Renvoi vers l'archive -->
+<section class="section section--sombre archive">
+  <div class="entete-section">
+    <span class="etiquette">Édition précédente</span>
+    <span class="etiquette">01 / Madame</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,56px);align-items:center">
+    <a class="lien-bureau" href="index.html#archive" style="aspect-ratio:4/5;overflow:hidden;display:block">
+      <img src="img/md-sunset.jpg" alt="T-shirts Madame portés au coucher du soleil">
+    </a>
+    <div>
+      <h2 class="mot" style="font-size:clamp(20px,2.8vw,32px)">T-shirt Madame</h2>
+      <p class="descriptif" style="color:#9A9A9A">
+        Sortie le 25 décembre 2025, écoulée en quelques jours.
+        Visible dans l'archive.
+      </p>
+      <span class="epuise">Épuisé</span>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="pied">
+  <div class="pied-haut">
+    <span class="pied-logo">Aurel</span>
+    <div class="colonnes">
+      <div>
+        <span class="etiquette">Boutique</span>
+        <ul>
+          <li><a href="produit.html">Fleur Bleue</a></li>
+          <li><a class="lien-bureau" href="index.html#archive">Archive</a></li>
+          <li><a href="#">Guide des tailles</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="etiquette">Aide</span>
+        <ul>
+          <li><a href="#">Livraison</a></li>
+          <li><a href="#">Retours</a></li>
+          <li><a href="#">Nous écrire</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="etiquette">Suivre</span>
+        <ul>
+          <li><a href="https://instagram.com/aurelstudio._">Instagram</a></li>
+          <li><a href="#">Alerte drop</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="pied-bas">
+    <span class="etiquette">Aurel Studio — Bassin d'Arcachon</span>
+    <span class="etiquette">Mentions légales · CGV · Confidentialité</span>
+  </div>
+</footer>
+
+<script>
+// Sélection de taille
+const tailles = document.querySelectorAll('.taille:not([disabled])');
+const acheter = document.getElementById('acheter');
+let choisie = null;
+
+tailles.forEach(b => b.addEventListener('click', () => {
+  tailles.forEach(x => x.setAttribute('aria-pressed','false'));
+  b.setAttribute('aria-pressed','true');
+  choisie = b.textContent.trim();
+  acheter.textContent = 'Acheter — Taille ' + choisie + ' · 35,00 €';
+}));
+
+// Départ vers Stripe Checkout (maquette)
+acheter.addEventListener('click', () => {
+  if (!choisie) { acheter.textContent = 'Choisissez une taille'; return; }
+  acheter.textContent = 'Redirection vers le paiement…';
+});
+</script>
+
+<script>
+// Menu mobile
+const menu = document.getElementById('menu');
+const burger = document.getElementById('burger');
+burger.addEventListener('click', () => {
+  const ouvert = menu.dataset.ouvert === 'true';
+  menu.dataset.ouvert = String(!ouvert);
+  menu.setAttribute('aria-hidden', String(ouvert));
+  burger.textContent = ouvert ? 'Menu' : 'Fermer';
+  document.body.classList.toggle('bloque', !ouvert);
+});
+</script>
+</body>
+</html>

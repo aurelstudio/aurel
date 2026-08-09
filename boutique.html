@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Boutique — AUREL</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="entete pose">
+  <a href="index.html" class="logo">Aurel</a>
+  <nav class="nav">
+    <a class="lien-bureau" href="boutique.html" aria-current="page">Boutique</a>
+    <a class="lien-bureau" href="index.html#archive">Archive</a>
+    <a class="lien-bureau" href="index.html#atelier">Atelier</a>
+    <button class="burger" id="burger" aria-controls="menu">Menu</button>
+    <a href="#" aria-label="Panier, 0 article">Panier (0)</a>
+  </nav>
+</header>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <a href="index.html">Accueil</a>
+  <a href="boutique.html">Boutique</a>
+  <a href="index.html#archive">Archive</a>
+  <a href="index.html#atelier">Atelier</a>
+  <span class="etiquette">Instagram · @aurelstudio._</span>
+</div>
+
+
+<main class="section boutique">
+
+  <div style="margin-bottom:clamp(40px,7vw,80px)">
+    <span class="etiquette">Deux éditions depuis décembre 2025</span>
+    <h1 class="titre-page" style="margin-top:14px">Boutique</h1>
+  </div>
+
+  <!-- 02 — disponible -->
+  <article class="ligne">
+    <span class="num">02</span>
+    <a href="produit.html" class="vignette">
+      <img src="img/fb-face.jpg" alt="T-shirt Fleur Bleue porté de face">
+    </a>
+    <div>
+      <span class="etiquette">Été 2026 · Disponible</span>
+      <h2 style="margin-top:12px">T-shirt<br>Fleur Bleue</h2>
+      <div class="meta">
+        <span class="prix" style="margin:0">35,00 €</span>
+        <span class="etiquette">Blanc · S M L XL</span>
+      </div>
+      <a href="produit.html" class="bouton bouton--fin etiquette" style="margin-top:24px;display:inline-block;color:var(--encre)">Voir la pièce</a>
+    </div>
+  </article>
+
+  <!-- 01 — épuisé -->
+  <article class="ligne ligne--epuise">
+    <span class="num">01</span>
+    <span class="vignette">
+      <img src="img/md-affiche.jpg" alt="Affiche de lancement de l'édition Madame">
+    </span>
+    <div>
+      <span class="etiquette">Décembre 2025 · Archive</span>
+      <h2 style="margin-top:12px">T-shirt<br>Madame</h2>
+      <div class="meta">
+        <span class="prix" style="margin:0;color:var(--gris)">35,00 €</span>
+        <span class="etiquette">Noir · S M L XL</span>
+      </div>
+      <span class="epuise" style="margin-top:24px">Épuisé</span>
+    </div>
+  </article>
+
+  <!-- Alerte drop : remplace un filtre inutile avec deux produits -->
+  <section style="margin-top:clamp(56px,9vw,110px);max-width:46ch">
+    <span class="etiquette">Prochaine édition</span>
+    <h2 class="mot" style="font-size:clamp(20px,2.8vw,32px);margin-top:14px">Être prévenu</h2>
+    <p class="descriptif">
+      Les éditions partent en quelques jours. Laissez une adresse pour recevoir
+      la date et l'heure du prochain drop — rien d'autre.
+    </p>
+    <form style="display:flex;gap:0;margin-top:26px;max-width:420px" onsubmit="return false">
+      <label for="mail" class="etiquette" style="position:absolute;left:-9999px">Adresse e-mail</label>
+      <input id="mail" type="email" placeholder="vous@exemple.fr"
+        style="flex:1;padding:16px 14px;border:1px solid var(--trait);border-right:0;font-family:var(--util);font-size:12px;letter-spacing:.06em;background:#fff">
+      <button class="bouton" style="width:auto;margin:0;padding:16px 26px">M'inscrire</button>
+    </form>
+  </section>
+
+</main>
+
+<footer class="pied">
+  <div class="pied-haut">
+    <span class="pied-logo">Aurel</span>
+    <div class="colonnes">
+      <div>
+        <span class="etiquette">Boutique</span>
+        <ul>
+          <li><a href="produit.html">Fleur Bleue</a></li>
+          <li><a class="lien-bureau" href="index.html#archive">Archive</a></li>
+          <li><a href="#">Guide des tailles</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="etiquette">Aide</span>
+        <ul>
+          <li><a href="#">Livraison</a></li>
+          <li><a href="#">Retours</a></li>
+          <li><a href="#">Nous écrire</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="etiquette">Suivre</span>
+        <ul>
+          <li><a href="https://instagram.com/aurelstudio._">Instagram</a></li>
+          <li><a href="#">Alerte drop</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="pied-bas">
+    <span class="etiquette">Aurel Studio — Bassin d'Arcachon</span>
+    <span class="etiquette">Mentions légales · CGV · Confidentialité</span>
+  </div>
+</footer>
+
+
+<script>
+// Menu mobile
+const menu = document.getElementById('menu');
+const burger = document.getElementById('burger');
+burger.addEventListener('click', () => {
+  const ouvert = menu.dataset.ouvert === 'true';
+  menu.dataset.ouvert = String(!ouvert);
+  menu.setAttribute('aria-hidden', String(ouvert));
+  burger.textContent = ouvert ? 'Menu' : 'Fermer';
+  document.body.classList.toggle('bloque', !ouvert);
+});
+</script>
+</body>
+</html>
