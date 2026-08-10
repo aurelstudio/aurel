@@ -300,7 +300,7 @@ details .corps{
 .lien-histoire:hover{color:var(--accent)}
 .campagne{display:grid;grid-template-columns:repeat(2,1fr);gap:4px}
 .campagne figure{aspect-ratio:3/4;overflow:hidden;background:#F2F2F2}
-.campagne figure:only-child{grid-column:1 / -1;aspect-ratio:16/9}
+.campagne figure:only-child{grid-column:1 / -1}
 
 /* ---------- pied de page ---------- */
 .pied{
