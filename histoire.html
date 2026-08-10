@@ -4,6 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Notre histoire — AUREL</title>
+
+<!-- Aperçu de lien (Instagram, iMessage, etc.) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aurel">
+<meta property="og:title" content="Notre histoire — AUREL">
+<meta property="og:description" content="Deux personnes, un dessin, une signature. L'histoire d'Aurel, Bassin d'Arcachon.">
+<meta property="og:image" content="https://aurel.company/img/fb-carreaux.jpg">
+<meta property="og:url" content="https://aurel.company/histoire.html">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon-32.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,7 +29,7 @@
     <a class="lien-bureau" href="index.html#archive">Archive</a>
     <a class="lien-bureau" href="histoire.html" aria-current="page">Notre histoire</a>
     <button class="burger" id="burger" aria-controls="menu">Menu</button>
-    <a href="#" aria-label="Panier, 0 article">Panier (0)</a>
+    <a href="#" aria-label="Panier, 0 article" id="lienPanier">Panier (0)</a>
   </nav>
 </header>
 
@@ -112,11 +126,24 @@
   </div>
   <div class="pied-bas">
     <span class="etiquette">Aurel — Bassin d'Arcachon</span>
-    <span class="etiquette">Mentions légales · CGV · Confidentialité</span>
+    <span class="etiquette">
+      <a href="legal.html#mentions" style="text-decoration:underline">Mentions légales</a> ·
+      <a href="legal.html#cgv" style="text-decoration:underline">CGV</a> ·
+      <a href="legal.html#confidentialite" style="text-decoration:underline">Confidentialité</a>
+    </span>
   </div>
 </footer>
 
 <script>
+// Badge panier (partagé avec la page produit)
+(function(){
+  try {
+    const p = JSON.parse(localStorage.getItem('aurel_panier')) || [];
+    const badge = document.getElementById('lienPanier');
+    if (badge) badge.textContent = `Panier (${p.length})`;
+  } catch(e){}
+})();
+
 // Menu mobile
 const menu = document.getElementById('menu');
 const burger = document.getElementById('burger');

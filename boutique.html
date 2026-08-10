@@ -4,6 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Boutique — AUREL</title>
+
+<!-- Aperçu de lien (Instagram, iMessage, etc.) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aurel">
+<meta property="og:title" content="Boutique — AUREL">
+<meta property="og:description" content="Deux éditions depuis décembre 2025. Séries courtes, Bassin d'Arcachon.">
+<meta property="og:image" content="https://aurel.company/img/fb-balcon.jpg">
+<meta property="og:url" content="https://aurel.company/boutique.html">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon-32.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,7 +29,7 @@
     <a class="lien-bureau" href="index.html#archive">Archive</a>
     <a class="lien-bureau" href="histoire.html">Notre histoire</a>
     <button class="burger" id="burger" aria-controls="menu">Menu</button>
-    <a href="#" aria-label="Panier, 0 article">Panier (0)</a>
+    <a href="#" aria-label="Panier, 0 article" id="lienPanier">Panier (0)</a>
   </nav>
 </header>
 
@@ -46,7 +60,7 @@
       <h2 style="margin-top:12px">T-shirt<br>Fleur Bleue</h2>
       <div class="meta">
         <span class="prix" style="margin:0">35,00 €</span>
-        <span class="etiquette">Blanc · S M L XL</span>
+        <span class="etiquette">Blanc · S M <span style="text-decoration:line-through">L XL</span></span>
       </div>
       <a href="produit.html" class="bouton bouton--fin etiquette" style="margin-top:24px;display:inline-block;color:var(--encre)">Voir la pièce</a>
     </div>
@@ -124,12 +138,25 @@
   </div>
   <div class="pied-bas">
     <span class="etiquette">Aurel — Bassin d'Arcachon</span>
-    <span class="etiquette">Mentions légales · CGV · Confidentialité</span>
+    <span class="etiquette">
+      <a href="legal.html#mentions" style="text-decoration:underline">Mentions légales</a> ·
+      <a href="legal.html#cgv" style="text-decoration:underline">CGV</a> ·
+      <a href="legal.html#confidentialite" style="text-decoration:underline">Confidentialité</a>
+    </span>
   </div>
 </footer>
 
 
 <script>
+// Badge panier (partagé avec la page produit)
+(function(){
+  try {
+    const p = JSON.parse(localStorage.getItem('aurel_panier')) || [];
+    const badge = document.getElementById('lienPanier');
+    if (badge) badge.textContent = `Panier (${p.length})`;
+  } catch(e){}
+})();
+
 // Menu mobile
 const menu = document.getElementById('menu');
 const burger = document.getElementById('burger');
