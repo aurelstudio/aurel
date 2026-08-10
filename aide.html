@@ -15,7 +15,7 @@
     <a class="lien-bureau" href="index.html#archive">Archive</a>
     <a class="lien-bureau" href="histoire.html">Notre histoire</a>
     <button class="burger" id="burger" aria-controls="menu">Menu</button>
-    <a href="#" aria-label="Panier, 0 article">Panier (0)</a>
+    <a href="#" aria-label="Panier, 0 article" id="lienPanier">Panier (0)</a>
   </nav>
 </header>
 
@@ -28,89 +28,118 @@
 </div>
 
 
-<main class="section boutique">
+<main>
 
-  <div style="margin-bottom:clamp(20px,4vw,32px)">
-    <span class="etiquette">Aurel Studio</span>
-    <h1 class="titre-page" style="margin-top:14px">Aide</h1>
-  </div>
+  <!-- Livraison -->
+  <section class="aide-section" id="livraison">
+    <span class="etiquette">Aide</span>
+    <h1 class="aide-titre">Livraison</h1>
+    <p>
+      Expédition sous 3 jours ouvrés depuis le Bassin d'Arcachon, Colissimo suivi.
+      Comptez 4,90 € en France métropolitaine, offert dès 70 € d'achat.
+      Un e-mail de suivi vous est envoyé dès que le colis part.
+    </p>
+  </section>
 
-  <dl class="dossier">
-    <div class="entree" id="livraison" style="scroll-margin-top:calc(var(--header) + 20px)">
-      <dt class="etiquette">Livraison</dt>
-      <dd>
-        <p>Expédition sous 3 jours ouvrés depuis le Bassin d'Arcachon.
-        Colissimo suivi, 4,90 € en France, offert dès 70 € d'achat.</p>
-      </dd>
+  <!-- Retours -->
+  <section class="aide-section" id="retours">
+    <span class="etiquette">Aide</span>
+    <h1 class="aide-titre">Retours</h1>
+    <p>
+      Vous disposez de 14 jours à réception pour changer d'avis, conformément
+      au droit de rétractation. La pièce doit être non portée, non lavée,
+      avec son étiquette. Écrivez-nous pour organiser le retour.
+    </p>
+  </section>
+
+  <!-- Guide des tailles -->
+  <section class="aide-section" id="tailles">
+    <span class="etiquette">Aide</span>
+    <h1 class="aide-titre">Guide des tailles</h1>
+    <p>
+      Coupe droite, à prendre dans sa taille habituelle. Toutes les mesures
+      sont en centimètres, à plat, pièce posée sur une table.
+    </p>
+
+    <div class="schema-taille">
+      <svg viewBox="0 0 400 500" role="img" aria-label="Schéma des mesures du t-shirt">
+        <defs>
+          <marker id="fleche-d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 Z" fill="var(--gris)"/>
+          </marker>
+        </defs>
+
+        <!-- silhouette t-shirt, vue à plat -->
+        <path class="silhouette" d="
+          M178,30 Q200,55 222,30
+          L260,38 L340,70 L345,140
+          L300,115 L275,125
+          L290,460 L110,460
+          L125,125 L100,115
+          L55,140 L60,70 Z"/>
+
+        <!-- épaules -->
+        <line x1="140" y1="20" x2="260" y2="20" marker-start="url(#fleche-d)" marker-end="url(#fleche-d)"/>
+        <text x="200" y="14" text-anchor="middle">Épaules</text>
+
+        <!-- poitrine -->
+        <line x1="125" y1="165" x2="275" y2="165" marker-start="url(#fleche-d)" marker-end="url(#fleche-d)"/>
+        <text x="200" y="180" text-anchor="middle">Poitrine</text>
+
+        <!-- manche -->
+        <line x1="255" y1="42" x2="330" y2="105" marker-start="url(#fleche-d)" marker-end="url(#fleche-d)"/>
+        <text x="345" y="80" text-anchor="start">Manche</text>
+
+        <!-- emmanchure -->
+        <line x1="285" y1="40" x2="285" y2="120" marker-start="url(#fleche-d)" marker-end="url(#fleche-d)"/>
+        <text x="292" y="82" text-anchor="start">Emmanchure</text>
+
+        <!-- poignet -->
+        <line x1="305" y1="122" x2="343" y2="138" marker-start="url(#fleche-d)" marker-end="url(#fleche-d)"/>
+        <text x="350" y="145" text-anchor="start">Poignet</text>
+
+        <!-- bas -->
+        <line x1="110" y1="475" x2="290" y2="475" marker-start="url(#fleche-d)" marker-end="url(#fleche-d)"/>
+        <text x="200" y="493" text-anchor="middle">Bas</text>
+
+        <!-- longueur totale -->
+        <line x1="30" y1="35" x2="30" y2="460" marker-start="url(#fleche-d)" marker-end="url(#fleche-d)"/>
+        <text x="10" y="250" text-anchor="middle" transform="rotate(-90 10 250)">Longueur totale</text>
+      </svg>
     </div>
-    <div class="entree" id="retours" style="scroll-margin-top:calc(var(--header) + 20px)">
-      <dt class="etiquette">Retours</dt>
-      <dd>
-        <p>Retour possible sous 14 jours à compter de la réception, pièce non
-        portée, non lavée, dans son emballage d'origine. Écrivez-nous pour
-        lancer un retour.</p>
-      </dd>
-    </div>
-    <div class="entree" id="tailles" style="scroll-margin-top:calc(var(--header) + 20px)">
-      <dt class="etiquette">Guide des tailles</dt>
-      <dd>
-        <p>Coupe droite, légèrement ample. Prenez votre taille habituelle.
-        Mesures à plat (vêtement posé, non déplié), taille S ci-dessous —
-        M et L arrivent bientôt.</p>
 
-        <svg viewBox="0 0 480 600" style="width:100%;max-width:420px;margin-top:20px" role="img" aria-label="Schéma des mesures du t-shirt Fleur Bleue, taille S">
-          <defs>
-            <marker id="fleche" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-              <path d="M0,0 L10,5 L0,10 Z" fill="#0B0B0B"/>
-            </marker>
-          </defs>
+    <table class="tableau-tailles">
+      <thead>
+        <tr>
+          <th>Mesure</th>
+          <th>S</th>
+          <th>M</th>
+          <th>L</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Épaules</td><td>23</td><td>25</td><td>27</td></tr>
+        <tr><td>Poitrine</td><td>44</td><td>46</td><td>48</td></tr>
+        <tr><td>Manche</td><td>19</td><td>21</td><td>23</td></tr>
+        <tr><td>Emmanchure</td><td>22</td><td>24</td><td>26</td></tr>
+        <tr><td>Poignet</td><td>16</td><td>18</td><td>20</td></tr>
+        <tr><td>Bas</td><td>47</td><td>49</td><td>51</td></tr>
+        <tr><td>Longueur totale</td><td>66,5</td><td>68,5</td><td>70,5</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;margin-top:14px">La taille XL n'est pas encore disponible.</p>
+  </section>
 
-          <!-- silhouette -->
-          <path d="M170,60 L90,95 L140,170 L150,520 L330,520 L340,170 L390,95 L310,60 L270,60 Q240,85 210,60 Z"
-            fill="none" stroke="#0B0B0B" stroke-width="1.5"/>
-
-          <!-- épaules 23cm -->
-          <line x1="185" y1="38" x2="295" y2="38" stroke="#0B0B0B" stroke-width="1" marker-start="url(#fleche)" marker-end="url(#fleche)"/>
-          <text x="240" y="30" text-anchor="middle" font-family="'Courier Prime',monospace" font-size="13" fill="#0B0B0B">23 cm</text>
-
-          <!-- poitrine 44cm -->
-          <line x1="145" y1="195" x2="335" y2="195" stroke="#0B0B0B" stroke-width="1" marker-start="url(#fleche)" marker-end="url(#fleche)"/>
-          <text x="240" y="188" text-anchor="middle" font-family="'Courier Prime',monospace" font-size="13" fill="#0B0B0B">44 cm</text>
-
-          <!-- largeur bas 47cm -->
-          <line x1="140" y1="545" x2="340" y2="545" stroke="#0B0B0B" stroke-width="1" marker-start="url(#fleche)" marker-end="url(#fleche)"/>
-          <text x="240" y="562" text-anchor="middle" font-family="'Courier Prime',monospace" font-size="13" fill="#0B0B0B">47 cm</text>
-
-          <!-- longueur manche 19cm -->
-          <line x1="55" y1="60" x2="55" y2="100" stroke="#0B0B0B" stroke-width="1" marker-start="url(#fleche)" marker-end="url(#fleche)"/>
-          <text x="30" y="84" text-anchor="middle" font-family="'Courier Prime',monospace" font-size="13" fill="#0B0B0B" transform="rotate(-90 30 84)">19 cm</text>
-
-          <!-- emmanchure 22cm -->
-          <line x1="105" y1="60" x2="105" y2="170" stroke="#0B0B0B" stroke-width="1" marker-start="url(#fleche)" marker-end="url(#fleche)"/>
-          <text x="80" y="118" text-anchor="middle" font-family="'Courier Prime',monospace" font-size="13" fill="#0B0B0B" transform="rotate(-90 80 118)">22 cm</text>
-
-          <!-- largeur manche 16cm -->
-          <line x1="70" y1="112" x2="110" y2="112" stroke="#0B0B0B" stroke-width="1" marker-start="url(#fleche)" marker-end="url(#fleche)"/>
-          <text x="90" y="132" text-anchor="middle" font-family="'Courier Prime',monospace" font-size="13" fill="#0B0B0B">16 cm</text>
-
-          <!-- longueur totale 66.5cm -->
-          <line x1="425" y1="60" x2="425" y2="520" stroke="#0B0B0B" stroke-width="1" marker-start="url(#fleche)" marker-end="url(#fleche)"/>
-          <text x="450" y="290" text-anchor="middle" font-family="'Courier Prime',monospace" font-size="13" fill="#0B0B0B" transform="rotate(-90 450 290)">66,5 cm</text>
-        </svg>
-
-        <p class="etiquette" style="margin-top:18px">
-          Épaules 23 · Poitrine 44 · Bas 47 · Manche 19 · Emmanchure 22 · Poignet 16 · Longueur 66,5 (cm)
-        </p>
-      </dd>
-    </div>
-    <div class="entree" id="contact" style="scroll-margin-top:calc(var(--header) + 20px)">
-      <dt class="etiquette">Nous écrire</dt>
-      <dd>
-        <p>Une question, avant ou après commande ? Écrivez à
-        <a href="mailto:aurel.messagerie@gmail.com" style="text-decoration:underline">aurel.messagerie@gmail.com</a>.</p>
-      </dd>
-    </div>
-  </dl>
+  <!-- Contact -->
+  <section class="aide-section" id="contact">
+    <span class="etiquette">Aide</span>
+    <h1 class="aide-titre">Nous écrire</h1>
+    <p>
+      Une question sur une commande, une taille, un délai ? Écrivez-nous,
+      on répond sous 48h.
+    </p>
+    <a href="mailto:aurel.messagerie@gmail.com" class="bouton--fin" style="display:inline-block;margin-top:20px">aurel.messagerie@gmail.com</a>
+  </section>
 
 </main>
 

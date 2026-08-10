@@ -59,8 +59,13 @@
       </p>
     </div>
 
-    <button class="bouton" id="acheter">Acheter — 35,00 €</button>
-    <p class="paiement">Paiement sécurisé par Stripe · Carte, Apple Pay, Google Pay</p>
+    <div class="bloc">
+      <input class="champ" type="text" id="prenom" placeholder="Prénom" autocomplete="given-name">
+      <input class="champ" type="email" id="email" placeholder="Adresse e-mail" autocomplete="email">
+      <button class="bouton" id="reserver">Réserver — 35,00 €</button>
+      <p class="paiement" id="statutReservation">Paiement par virement ou PayPal, instructions envoyées par e-mail après réservation.</p>
+      <p class="paiement">Vous pouvez aussi payer directement via <a href="https://paypal.me/glarrabure" style="text-decoration:underline">PayPal</a></p>
+    </div>
     <a href="fleur-bleue.html" class="lien-histoire">L'histoire de Fleur Bleue →</a>
 
     <div class="bloc">
@@ -172,23 +177,47 @@
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
+emailjs.init({ publicKey: "W385oKLCHGKsZocam" });
+
 // Sélection de taille
 const tailles = document.querySelectorAll('.taille:not([disabled])');
-const acheter = document.getElementById('acheter');
 let choisie = null;
 
 tailles.forEach(b => b.addEventListener('click', () => {
   tailles.forEach(x => x.setAttribute('aria-pressed','false'));
   b.setAttribute('aria-pressed','true');
   choisie = b.textContent.trim();
-  acheter.textContent = 'Acheter — Taille ' + choisie + ' · 35,00 €';
 }));
 
-// Départ vers Stripe Checkout (maquette)
-acheter.addEventListener('click', () => {
-  if (!choisie) { acheter.textContent = 'Choisissez une taille'; return; }
-  acheter.textContent = 'Redirection vers le paiement…';
+// Réservation (envoi automatique du mail avec les infos de paiement)
+const boutonReserver = document.getElementById('reserver');
+const statutReservation = document.getElementById('statutReservation');
+const texteInitial = statutReservation.textContent;
+
+boutonReserver.addEventListener('click', () => {
+  if (!choisie) { statutReservation.textContent = 'Choisissez une taille avant de réserver.'; return; }
+  const prenom = document.getElementById('prenom').value.trim();
+  const email = document.getElementById('email').value.trim();
+  if (!prenom || !email) { statutReservation.textContent = 'Merci de renseigner votre prénom et votre e-mail.'; return; }
+
+  boutonReserver.textContent = 'Envoi en cours…';
+  boutonReserver.disabled = true;
+
+  emailjs.send('service_npj8uj8', 'template_t7w4tav', {
+    prenom: prenom,
+    email: email,
+    taille: choisie,
+    prix: '35,00'
+  }).then(() => {
+    statutReservation.textContent = 'Réservation reçue ! Vérifiez votre boîte mail (et vos spams) pour les instructions de paiement.';
+    boutonReserver.textContent = 'Réservation confirmée';
+  }).catch(() => {
+    statutReservation.textContent = 'Une erreur est survenue. Écrivez-nous directement à aurel.messagerie@gmail.com.';
+    boutonReserver.textContent = 'Réserver — 35,00 €';
+    boutonReserver.disabled = false;
+  });
 });
 </script>
 
