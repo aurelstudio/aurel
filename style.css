@@ -292,8 +292,15 @@ details .corps{
   font-family:var(--util);font-size:9.5px;letter-spacing:.13em;
   text-transform:uppercase;color:var(--gris);
 }
+.lien-histoire{
+  display:inline-block;margin-top:20px;
+  font-family:var(--util);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  border-bottom:1px solid currentColor;padding-bottom:3px;
+}
+.lien-histoire:hover{color:var(--accent)}
 .campagne{display:grid;grid-template-columns:repeat(2,1fr);gap:4px}
 .campagne figure{aspect-ratio:3/4;overflow:hidden;background:#F2F2F2}
+.campagne figure:only-child{grid-column:1 / -1;aspect-ratio:16/9}
 
 /* ---------- pied de page ---------- */
 .pied{
@@ -393,9 +400,3 @@ details .corps{
 .recit{max-width:52ch;margin:0 auto;text-align:center}
 .recit p{font-size:14px;line-height:1.95;color:#4A4A4A;font-weight:300;margin-bottom:24px}
 .recit p:last-child{margin-bottom:0}
-.lien-histoire{
-  display:inline-block;margin-top:30px;
-  font-family:var(--util);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
-  border-bottom:1px solid currentColor;padding-bottom:3px;
-}
-.lien-histoire:hover{color:var(--accent)}
