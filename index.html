@@ -31,7 +31,7 @@
 <!-- ══ HERO ══ -->
 <section class="hero">
   <img src="img/fb-bike.jpg" alt="T-shirt Fleur Bleue vu de dos, à côté d'un vélo électrique noir">
-  <h1 class="hero-marque">Aurel</h1>
+  <h1 class="hero-marque" id="heroMarque">Aurel</h1>
   <div class="hero-pied">
     <span class="etiquette">Collection 02 — Été 2026<span class="petit-masque"> · Tirage limité</span></span>
     <span class="defiler etiquette"><i class="barre"></i>Défiler</span>
@@ -162,6 +162,19 @@ const seuil = () => window.innerHeight * 0.82;
 const majEntete = () => entete.classList.toggle('pose', window.scrollY > seuil());
 majEntete();
 addEventListener('scroll', majEntete, {passive:true});
+
+// "Aurel" s'estompe progressivement quand on défile hors du hero
+const heroMarque = document.getElementById('heroMarque');
+const heroSection = document.querySelector('.hero');
+function majMarque(){
+  if (!heroMarque || !heroSection) return;
+  const h = heroSection.offsetHeight;
+  const progression = Math.min(Math.max(window.scrollY / h, 0), 1);
+  heroMarque.style.opacity = String(1 - progression);
+  heroMarque.style.transform = `translateY(${progression * -70}px)`;
+}
+majMarque();
+addEventListener('scroll', majMarque, {passive:true});
 
 // Révélation au défilement
 const obs = new IntersectionObserver((entrees) => {
