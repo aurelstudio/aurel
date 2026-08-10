@@ -41,7 +41,7 @@
   <div class="panneau">
     <span class="etiquette">Collection 02 — Fleur Bleue</span>
     <h1 class="fiche-titre">T-shirt<br>Fleur Bleue</h1>
-    <p class="prix">35,00 €</p>
+    <p class="prix">35,00 € <span class="accent">·</span> <span style="font-size:12px">+ 4,90 € livraison</span></p>
 
     <div class="bloc">
       <div style="display:flex;justify-content:space-between;align-items:baseline">
@@ -60,10 +60,16 @@
     </div>
 
     <div class="bloc">
+      <span class="etiquette">Livraison</span>
       <input class="champ" type="text" id="prenom" placeholder="Prénom" autocomplete="given-name">
       <input class="champ" type="email" id="email" placeholder="Adresse e-mail" autocomplete="email">
-      <button class="bouton" id="reserver">Réserver — 35,00 €</button>
-      <p class="paiement" id="statutReservation">Paiement par virement ou PayPal, instructions envoyées par e-mail après réservation.</p>
+      <input class="champ" type="text" id="adresse" placeholder="Adresse (numéro et rue)" autocomplete="street-address">
+      <div style="display:flex;gap:10px">
+        <input class="champ" type="text" id="codePostal" placeholder="Code postal" autocomplete="postal-code" style="flex:1">
+        <input class="champ" type="text" id="ville" placeholder="Ville" autocomplete="address-level2" style="flex:2">
+      </div>
+      <button class="bouton" id="reserver">Réserver — 39,90 €</button>
+      <p class="paiement" id="statutReservation">Total avec livraison. Instructions de paiement envoyées par e-mail après réservation.</p>
       <p class="paiement">Vous pouvez aussi payer directement via <a href="https://paypal.me/glarrabure" style="text-decoration:underline">PayPal</a></p>
     </div>
     <a href="fleur-bleue.html" class="lien-histoire">L'histoire de Fleur Bleue →</a>
@@ -194,13 +200,20 @@ tailles.forEach(b => b.addEventListener('click', () => {
 // Réservation (envoi automatique du mail avec les infos de paiement)
 const boutonReserver = document.getElementById('reserver');
 const statutReservation = document.getElementById('statutReservation');
-const texteInitial = statutReservation.textContent;
 
 boutonReserver.addEventListener('click', () => {
   if (!choisie) { statutReservation.textContent = 'Choisissez une taille avant de réserver.'; return; }
+
   const prenom = document.getElementById('prenom').value.trim();
   const email = document.getElementById('email').value.trim();
-  if (!prenom || !email) { statutReservation.textContent = 'Merci de renseigner votre prénom et votre e-mail.'; return; }
+  const adresse = document.getElementById('adresse').value.trim();
+  const codePostal = document.getElementById('codePostal').value.trim();
+  const ville = document.getElementById('ville').value.trim();
+
+  if (!prenom || !email || !adresse || !codePostal || !ville) {
+    statutReservation.textContent = 'Merci de remplir tous les champs (prénom, e-mail, adresse complète).';
+    return;
+  }
 
   boutonReserver.textContent = 'Envoi en cours…';
   boutonReserver.disabled = true;
@@ -209,13 +222,18 @@ boutonReserver.addEventListener('click', () => {
     prenom: prenom,
     email: email,
     taille: choisie,
-    prix: '35,00'
+    prix: '35,00',
+    livraison: '4,90',
+    total: '39,90',
+    adresse: adresse,
+    codePostal: codePostal,
+    ville: ville
   }).then(() => {
     statutReservation.textContent = 'Réservation reçue ! Vérifiez votre boîte mail (et vos spams) pour les instructions de paiement.';
     boutonReserver.textContent = 'Réservation confirmée';
   }).catch(() => {
     statutReservation.textContent = 'Une erreur est survenue. Écrivez-nous directement à aurel.messagerie@gmail.com.';
-    boutonReserver.textContent = 'Réserver — 35,00 €';
+    boutonReserver.textContent = 'Réserver — 39,90 €';
     boutonReserver.disabled = false;
   });
 });
