@@ -185,6 +185,15 @@
 </footer>
 
 <script>
+// Badge panier (partagé avec la page produit)
+(function(){
+  try {
+    const p = JSON.parse(localStorage.getItem('aurel_panier')) || [];
+    const badge = document.getElementById('lienPanier');
+    if (badge) badge.textContent = `Panier (${p.length})`;
+  } catch(e){}
+})();
+
 // Menu mobile
 const menu = document.getElementById('menu');
 const burger = document.getElementById('burger');

@@ -15,7 +15,7 @@
     <a class="lien-bureau" href="#archive">Archive</a>
     <a class="lien-bureau" href="histoire.html">Notre histoire</a>
     <button class="burger" id="burger" aria-controls="menu">Menu</button>
-    <a href="#" aria-label="Panier, 0 article">Panier (0)</a>
+    <a href="#" aria-label="Panier, 0 article" id="lienPanier">Panier (0)</a>
   </nav>
 </header>
 
@@ -59,7 +59,7 @@
     <div class="reveal">
       <span class="etiquette">Édition Fleur Bleue</span>
       <h2 class="produit-titre">T-shirt<br>Fleur&nbsp;Bleue</h2>
-      <p class="prix">35,00 € <span class="accent">·</span> S — XL</p>
+      <p class="prix">35,00 € <span class="accent">·</span> S — L</p>
       <p class="descriptif">
         Coton épais, coupe droite. Bouquet dessiné au trait, sérigraphié bleu dans
         le dos, signé <em>une nuit d'été</em>. Le monogramme Aurel Studio est repris
@@ -75,9 +75,9 @@
 <section class="manifeste" id="atelier">
   <h2 class="reveal">Not just<br>urban</h2>
   <p class="reveal">
-    Des éditions en série courte, sans calendrier fixe.
-    Chaque pièce porte un dessin au trait, une phrase, et rien d'autre.
-    Quand l'édition est écoulée, elle ne revient pas.
+    Des éditions en série courte, sans calendrier fixe. Chaque pièce porte un
+    dessin au trait, une phrase, et rien d'autre. Quand l'édition est écoulée,
+    elle ne revient pas.
   </p>
 </section>
 
@@ -170,6 +170,15 @@ document.querySelectorAll('.reveal').forEach((el,i) => {
   el.style.transitionDelay = (i % 3) * 90 + 'ms';
   obs.observe(el);
 });
+
+// Badge panier (partagé avec la page produit)
+(function(){
+  try {
+    const p = JSON.parse(localStorage.getItem('aurel_panier')) || [];
+    const badge = document.getElementById('lienPanier');
+    if (badge) badge.textContent = `Panier (${p.length})`;
+  } catch(e){}
+})();
 </script>
 
 <script>

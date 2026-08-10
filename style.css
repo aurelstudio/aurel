@@ -121,7 +121,15 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   display:flex;align-items:center;justify-content:center;
   background:var(--encre);overflow:hidden;
 }
-.hero img{position:absolute;inset:0;object-position:50% 42%;opacity:.92}
+.hero img{
+  position:absolute;inset:0;object-position:50% 42%;opacity:.92;
+  animation:zoomHero 22s ease-out forwards;
+  transform-origin:50% 42%;
+}
+@keyframes zoomHero{
+  0%{transform:scale(1.04)}
+  100%{transform:scale(1.14)}
+}
 .hero::after{
   content:'';position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(0,0,0,.42) 0%,rgba(0,0,0,.06) 34%,rgba(0,0,0,.05) 62%,rgba(0,0,0,.5) 100%);
@@ -140,7 +148,10 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   position:absolute;z-index:2;bottom:22px;left:var(--marge);right:var(--marge);
   display:flex;justify-content:space-between;align-items:flex-end;
   color:#fff;
+  opacity:0;transform:translateY(14px);
+  animation:apparitionHero 1.3s ease .5s forwards;
 }
+@keyframes apparitionHero{to{opacity:1;transform:none}}
 .hero-pied .etiquette{color:rgba(255,255,255,.82)}
 .defiler{display:flex;align-items:center;gap:10px}
 .defiler .barre{
@@ -148,6 +159,10 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   transform-origin:left;animation:glisse 2.6s ease-in-out infinite;
 }
 @keyframes glisse{0%,100%{transform:scaleX(.3)}50%{transform:scaleX(1)}}
+@media(prefers-reduced-motion:reduce){
+  .hero img{animation:none}
+  .hero-pied{animation:none;opacity:1;transform:none}
+}
 
 /* ---------- sections ---------- */
 .section{padding:clamp(64px,10vw,132px) var(--marge)}
@@ -197,6 +212,11 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   border-bottom:1px solid currentColor;padding-bottom:3px;
 }
 .bouton--fin:hover{background:none;color:var(--accent)}
+.bouton--secondaire{
+  background:transparent;color:var(--encre);
+  border:1px solid var(--encre);margin-top:12px;
+}
+.bouton--secondaire:hover{background:var(--encre);color:#fff}
 
 /* ---------- manifeste ---------- */
 .manifeste{text-align:center;padding:clamp(80px,13vw,170px) var(--marge)}
@@ -310,6 +330,39 @@ details .corps{
 }
 .champ::placeholder{color:var(--gris)}
 .champ:focus{border-color:var(--encre)}
+
+/* ---------- panier (tiroir latéral) ---------- */
+.panier-fond{
+  position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.4);
+  opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s;
+}
+.panier-fond.ouvert{opacity:1;visibility:visible}
+.panier-tiroir{
+  position:fixed;top:0;right:0;bottom:0;z-index:201;
+  width:min(420px,92vw);background:#fff;
+  display:flex;flex-direction:column;
+  transform:translateX(100%);transition:transform .45s cubic-bezier(.2,.7,.2,1);
+}
+.panier-tiroir.ouvert{transform:translateX(0)}
+.panier-entete{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:22px var(--marge);border-bottom:1px solid var(--trait);
+}
+.panier-entete button{font-size:18px;line-height:1;padding:4px}
+.panier-liste{flex:1;overflow-y:auto;padding:0 var(--marge)}
+.panier-item{display:flex;gap:14px;padding:20px 0;border-bottom:1px solid var(--trait)}
+.panier-item img{width:66px;aspect-ratio:4/5;object-fit:cover;background:#F2F2F2}
+.panier-item .infos{flex:1}
+.panier-item h3{font-size:12px;font-weight:400;text-transform:uppercase;letter-spacing:.08em}
+.panier-item .retirer{
+  display:inline-block;margin-top:8px;cursor:pointer;
+  font-family:var(--util);font-size:10px;letter-spacing:.1em;
+  text-decoration:underline;color:var(--gris);
+}
+.panier-item .retirer:hover{color:var(--encre)}
+.panier-vide{padding:44px 0;color:var(--gris);font-size:13px;text-align:center}
+.panier-pied{padding:20px var(--marge) 28px;border-top:1px solid var(--trait)}
+.panier-ligne-total{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
 
 /* ---------- pied de page ---------- */
 .pied{
