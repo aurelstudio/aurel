@@ -351,6 +351,9 @@ boutonReserver.addEventListener('click', () => {
 
 majBadge();
 majAffichagePanier();
+
+// Ouvre le panier automatiquement si on arrive depuis une autre page via "produit.html#panier"
+if (location.hash === '#panier') { ouvrirPanier(); }
 </script>
 
 <script>

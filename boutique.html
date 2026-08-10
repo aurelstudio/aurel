@@ -29,7 +29,7 @@
     <a class="lien-bureau" href="index.html#archive">Archive</a>
     <a class="lien-bureau" href="histoire.html">Notre histoire</a>
     <button class="burger" id="burger" aria-controls="menu">Menu</button>
-    <a href="#" aria-label="Panier, 0 article" id="lienPanier">Panier (0)</a>
+    <a href="produit.html#panier" aria-label="Panier, 0 article" id="lienPanier">Panier (0)</a>
   </nav>
 </header>
 
@@ -83,19 +83,19 @@
     </div>
   </article>
 
-  <!-- Alerte drop : remplace un filtre inutile avec deux produits -->
+  <!-- Alerte drop -->
   <section id="alerte" style="margin-top:clamp(56px,9vw,110px);max-width:46ch;scroll-margin-top:calc(var(--header) + 20px)">
     <span class="etiquette">Prochaine édition</span>
     <h2 class="mot" style="font-size:clamp(20px,2.8vw,32px);margin-top:14px">Être prévenu</h2>
-    <p class="descriptif">
+    <p class="descriptif" id="alerteTexte">
       Les éditions partent en quelques jours. Laissez une adresse pour recevoir
       la date et l'heure du prochain drop — rien d'autre.
     </p>
-    <form style="display:flex;gap:0;margin-top:26px;max-width:420px" onsubmit="return false">
+    <form id="alerteForm" style="display:flex;gap:0;margin-top:26px;max-width:420px">
       <label for="mail" class="etiquette" style="position:absolute;left:-9999px">Adresse e-mail</label>
-      <input id="mail" type="email" placeholder="vous@exemple.fr"
+      <input id="mail" type="email" required placeholder="vous@exemple.fr"
         style="flex:1;padding:16px 14px;border:1px solid var(--trait);border-right:0;font-family:var(--util);font-size:12px;letter-spacing:.06em;background:#fff">
-      <button class="bouton" style="width:auto;margin:0;padding:16px 26px">M'inscrire</button>
+      <button class="bouton" id="alerteBouton" style="width:auto;margin:0;padding:16px 26px">M'inscrire</button>
     </form>
   </section>
 
@@ -146,8 +146,10 @@
   </div>
 </footer>
 
-
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
+emailjs.init({ publicKey: "W385oKLCHGKsZocam" });
+
 // Badge panier (partagé avec la page produit)
 (function(){
   try {
@@ -156,6 +158,29 @@
     if (badge) badge.textContent = `Panier (${p.length})`;
   } catch(e){}
 })();
+
+// ---------- Alerte drop ----------
+const alerteForm = document.getElementById('alerteForm');
+const alerteBouton = document.getElementById('alerteBouton');
+const alerteInput = document.getElementById('mail');
+
+alerteForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const email = alerteInput.value.trim();
+  if (!email) return;
+
+  alerteBouton.textContent = 'Envoi…';
+  alerteBouton.disabled = true;
+
+  emailjs.send('service_npj8uj8', 'template_7vz7imd', { email: email }).then(() => {
+    document.getElementById('alerteTexte').textContent = "Inscription enregistrée. On vous préviendra dès qu'une date est fixée.";
+    alerteForm.style.display = 'none';
+  }).catch(() => {
+    alerteBouton.textContent = "M'inscrire";
+    alerteBouton.disabled = false;
+    alert("Une erreur est survenue, réessayez ou écrivez-nous à aurel.messagerie@gmail.com.");
+  });
+});
 
 // Menu mobile
 const menu = document.getElementById('menu');
