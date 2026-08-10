@@ -166,6 +166,8 @@ addEventListener('scroll', majEntete, {passive:true});
 // "Aurel" s'estompe progressivement quand on défile hors du hero
 const heroMarque = document.getElementById('heroMarque');
 const heroSection = document.querySelector('.hero');
+const reduitMouvement = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 function majMarque(){
   if (!heroMarque || !heroSection) return;
   const h = heroSection.offsetHeight;
@@ -173,8 +175,27 @@ function majMarque(){
   heroMarque.style.opacity = String(1 - progression);
   heroMarque.style.transform = `translateY(${progression * -70}px)`;
 }
-majMarque();
-addEventListener('scroll', majMarque, {passive:true});
+
+if (heroMarque) {
+  if (reduitMouvement) {
+    heroMarque.style.opacity = '1';
+  } else {
+    // entrée en fondu douce au chargement (transition CSS temporaire)
+    heroMarque.style.transition = 'opacity 1.2s ease, transform 1.2s ease';
+    heroMarque.style.transform = 'translateY(14px)';
+    requestAnimationFrame(() => {
+      heroMarque.style.opacity = '1';
+      heroMarque.style.transform = 'translateY(0)';
+    });
+    // une fois l'entrée terminée, on retire la transition pour que
+    // le fondu au scroll suive la position exacte, sans décalage
+    setTimeout(() => {
+      heroMarque.style.transition = 'none';
+      majMarque();
+    }, 1300);
+    addEventListener('scroll', majMarque, {passive:true});
+  }
+}
 
 // Révélation au défilement
 const obs = new IntersectionObserver((entrees) => {
