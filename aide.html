@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aide — AUREL</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="entete pose">
+  <a href="index.html" class="logo">Aurel</a>
+  <nav class="nav">
+    <a class="lien-bureau" href="boutique.html">Boutique</a>
+    <a class="lien-bureau" href="index.html#archive">Archive</a>
+    <a class="lien-bureau" href="histoire.html">Notre histoire</a>
+    <button class="burger" id="burger" aria-controls="menu">Menu</button>
+    <a href="#" aria-label="Panier, 0 article">Panier (0)</a>
+  </nav>
+</header>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <a href="index.html">Accueil</a>
+  <a href="boutique.html">Boutique</a>
+  <a href="index.html#archive">Archive</a>
+  <a href="histoire.html">Notre histoire</a>
+  <span class="etiquette">Instagram · @aurelstudio._</span>
+</div>
+
+
+<main class="section boutique">
+
+  <div style="margin-bottom:clamp(20px,4vw,32px)">
+    <span class="etiquette">Aurel Studio</span>
+    <h1 class="titre-page" style="margin-top:14px">Aide</h1>
+  </div>
+
+  <dl class="dossier">
+    <div class="entree" id="livraison" style="scroll-margin-top:calc(var(--header) + 20px)">
+      <dt class="etiquette">Livraison</dt>
+      <dd>
+        <p>Expédition sous 3 jours ouvrés depuis le Bassin d'Arcachon.
+        Colissimo suivi, 4,90 € en France, offert dès 70 € d'achat.</p>
+      </dd>
+    </div>
+    <div class="entree" id="retours" style="scroll-margin-top:calc(var(--header) + 20px)">
+      <dt class="etiquette">Retours</dt>
+      <dd>
+        <p>Retour possible sous 14 jours à compter de la réception, pièce non
+        portée, non lavée, dans son emballage d'origine. Écrivez-nous pour
+        lancer un retour.</p>
+      </dd>
+    </div>
+    <div class="entree" id="tailles" style="scroll-margin-top:calc(var(--header) + 20px)">
+      <dt class="etiquette">Guide des tailles</dt>
+      <dd>
+        <p>Coupe droite, légèrement ample. Prenez votre taille habituelle.
+        Mesures à plat (vêtement posé, non déplié), taille S ci-dessous —
+        M et L arrivent bientôt.</p>
+
+        <svg viewBox="0 0 480 600" style="width:100%;max-width:420px;margin-top:20px" role="img" aria-label="Schéma des mesures du t-shirt Fleur Bleue, taille S">
+          <defs>
+            <marker id="fleche" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 Z" fill="#0B0B0B"/>
+            </marker>
+          </defs>
+
+          <!-- silhouette -->
+          <path d="M170,60 L90,95 L140,170 L150,520 L330,520 L340,170 L390,95 L310,60 L270,60 Q240,85 210,60 Z"
+            fill="none" stroke="#0B0B0B" stroke-width="1.5"/>
+
+          <!-- épaules 23cm -->
+          <line x1="185" y1="38" x2="295" y2="38" stroke="#0B0B0B" stroke-width="1" marker-start="url(#fleche)" marker-end="url(#fleche)"/>
+          <text x="240" y="30" text-anchor="middle" font-family="'Courier Prime',monospace" font-size="13" fill="#0B0B0B">23 cm</text>
+
+          <!-- poitrine 44cm -->
+          <line x1="145" y1="195" x2="335" y2="195" stroke="#0B0B0B" stroke-width="1" marker-start="url(#fleche)" marker-end="url(#fleche)"/>
+          <text x="240" y="188" text-anchor="middle" font-family="'Courier Prime',monospace" font-size="13" fill="#0B0B0B">44 cm</text>
+
+          <!-- largeur bas 47cm -->
+          <line x1="140" y1="545" x2="340" y2="545" stroke="#0B0B0B" stroke-width="1" marker-start="url(#fleche)" marker-end="url(#fleche)"/>
+          <text x="240" y="562" text-anchor="middle" font-family="'Courier Prime',monospace" font-size="13" fill="#0B0B0B">47 cm</text>
+
+          <!-- longueur manche 19cm -->
+          <line x1="55" y1="60" x2="55" y2="100" stroke="#0B0B0B" stroke-width="1" marker-start="url(#fleche)" marker-end="url(#fleche)"/>
+          <text x="30" y="84" text-anchor="middle" font-family="'Courier Prime',monospace" font-size="13" fill="#0B0B0B" transform="rotate(-90 30 84)">19 cm</text>
+
+          <!-- emmanchure 22cm -->
+          <line x1="105" y1="60" x2="105" y2="170" stroke="#0B0B0B" stroke-width="1" marker-start="url(#fleche)" marker-end="url(#fleche)"/>
+          <text x="80" y="118" text-anchor="middle" font-family="'Courier Prime',monospace" font-size="13" fill="#0B0B0B" transform="rotate(-90 80 118)">22 cm</text>
+
+          <!-- largeur manche 16cm -->
+          <line x1="70" y1="112" x2="110" y2="112" stroke="#0B0B0B" stroke-width="1" marker-start="url(#fleche)" marker-end="url(#fleche)"/>
+          <text x="90" y="132" text-anchor="middle" font-family="'Courier Prime',monospace" font-size="13" fill="#0B0B0B">16 cm</text>
+
+          <!-- longueur totale 66.5cm -->
+          <line x1="425" y1="60" x2="425" y2="520" stroke="#0B0B0B" stroke-width="1" marker-start="url(#fleche)" marker-end="url(#fleche)"/>
+          <text x="450" y="290" text-anchor="middle" font-family="'Courier Prime',monospace" font-size="13" fill="#0B0B0B" transform="rotate(-90 450 290)">66,5 cm</text>
+        </svg>
+
+        <p class="etiquette" style="margin-top:18px">
+          Épaules 23 · Poitrine 44 · Bas 47 · Manche 19 · Emmanchure 22 · Poignet 16 · Longueur 66,5 (cm)
+        </p>
+      </dd>
+    </div>
+    <div class="entree" id="contact" style="scroll-margin-top:calc(var(--header) + 20px)">
+      <dt class="etiquette">Nous écrire</dt>
+      <dd>
+        <p>Une question, avant ou après commande ? Écrivez à
+        <a href="mailto:aurel.messagerie@gmail.com" style="text-decoration:underline">aurel.messagerie@gmail.com</a>.</p>
+      </dd>
+    </div>
+  </dl>
+
+</main>
+
+<footer class="pied">
+  <div class="pied-haut">
+    <span class="pied-logo">Aurel</span>
+    <div class="colonnes">
+      <div>
+        <span class="etiquette">Aurel</span>
+        <ul>
+          <li><a href="histoire.html">Notre histoire</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="etiquette">Boutique</span>
+        <ul>
+          <li><a href="produit.html">Fleur Bleue</a></li>
+          <li><a class="lien-bureau" href="index.html#archive">Archive</a></li>
+          <li><a href="aide.html#tailles">Guide des tailles</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="etiquette">Aide</span>
+        <ul>
+          <li><a href="aide.html#livraison">Livraison</a></li>
+          <li><a href="aide.html#retours">Retours</a></li>
+          <li><a href="aide.html#contact">Nous écrire</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="etiquette">Suivre</span>
+        <ul>
+          <li><a href="https://instagram.com/aurelstudio._">Instagram</a></li>
+          <li><a href="boutique.html#alerte">Alerte drop</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="pied-bas">
+    <span class="etiquette">Aurel — Bassin d'Arcachon</span>
+    <span class="etiquette">Mentions légales · CGV · Confidentialité</span>
+  </div>
+</footer>
+
+<script>
+// Menu mobile
+const menu = document.getElementById('menu');
+const burger = document.getElementById('burger');
+burger.addEventListener('click', () => {
+  const ouvert = menu.dataset.ouvert === 'true';
+  menu.dataset.ouvert = String(!ouvert);
+  menu.setAttribute('aria-hidden', String(ouvert));
+  burger.textContent = ouvert ? 'Menu' : 'Fermer';
+  document.body.classList.toggle('bloque', !ouvert);
+});
+</script>
+</body>
+</html>
