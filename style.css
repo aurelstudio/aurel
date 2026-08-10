@@ -164,6 +164,33 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   .hero-pied{animation:none;opacity:1;transform:none}
 }
 
+/* ---------- bandeau défilant ---------- */
+.marquee{
+  background:var(--encre);color:#fff;
+  overflow:hidden;white-space:nowrap;
+  padding:14px 0;
+}
+.marquee-piste{
+  display:inline-flex;width:max-content;
+  animation:defilerMarquee 24s linear infinite;
+}
+.marquee-piste span{
+  font-family:var(--util);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  padding:0 28px;
+  display:inline-flex;align-items:center;
+  color:#C8C8C8;
+}
+.marquee-piste span::after{
+  content:'✦';margin-left:28px;color:var(--accent);
+}
+@keyframes defilerMarquee{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+@media(prefers-reduced-motion:reduce){
+  .marquee-piste{animation:none}
+}
+
 /* ---------- sections ---------- */
 .section{padding:clamp(64px,10vw,132px) var(--marge)}
 .section--sombre{background:var(--encre);color:var(--papier)}
