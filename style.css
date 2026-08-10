@@ -121,19 +121,23 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   display:flex;align-items:center;justify-content:center;
   background:var(--encre);overflow:hidden;
 }
-.hero img{
-  position:absolute;inset:0;object-position:50% 42%;opacity:.92;
-  animation:zoomHero 22s ease-out forwards;
-  transform-origin:50% 42%;
-}
-@keyframes zoomHero{
-  0%{transform:scale(1.04)}
-  100%{transform:scale(1.14)}
-}
+.hero img{position:absolute;inset:0;object-position:50% 42%;opacity:.92}
 .hero::after{
   content:'';position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(0,0,0,.42) 0%,rgba(0,0,0,.06) 34%,rgba(0,0,0,.05) 62%,rgba(0,0,0,.5) 100%);
 }
+.hero-marque{
+  position:relative;z-index:2;color:#fff;
+  font-family:Georgia,'Times New Roman',serif;
+  font-weight:400;
+  font-size:clamp(52px,13vw,190px);
+  letter-spacing:.1em;text-transform:uppercase;line-height:1;
+  text-align:center;pointer-events:none;
+  text-shadow:0 4px 50px rgba(0,0,0,.4);
+  opacity:0;transform:translateY(14px);
+  animation:apparitionMarque 1.5s ease .4s forwards;
+}
+@keyframes apparitionMarque{to{opacity:1;transform:none}}
 .hero-contenu{
   position:relative;z-index:2;color:#fff;text-align:center;
   display:flex;flex-direction:column;align-items:center;
@@ -160,35 +164,8 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 }
 @keyframes glisse{0%,100%{transform:scaleX(.3)}50%{transform:scaleX(1)}}
 @media(prefers-reduced-motion:reduce){
-  .hero img{animation:none}
   .hero-pied{animation:none;opacity:1;transform:none}
-}
-
-/* ---------- bandeau défilant ---------- */
-.marquee{
-  background:var(--encre);color:#fff;
-  overflow:hidden;white-space:nowrap;
-  padding:14px 0;
-}
-.marquee-piste{
-  display:inline-flex;width:max-content;
-  animation:defilerMarquee 24s linear infinite;
-}
-.marquee-piste span{
-  font-family:var(--util);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
-  padding:0 28px;
-  display:inline-flex;align-items:center;
-  color:#C8C8C8;
-}
-.marquee-piste span::after{
-  content:'✦';margin-left:28px;color:var(--accent);
-}
-@keyframes defilerMarquee{
-  from{transform:translateX(0)}
-  to{transform:translateX(-50%)}
-}
-@media(prefers-reduced-motion:reduce){
-  .marquee-piste{animation:none}
+  .hero-marque{animation:none;opacity:1;transform:none}
 }
 
 /* ---------- sections ---------- */
