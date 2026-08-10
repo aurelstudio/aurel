@@ -107,7 +107,7 @@
     <h3 class="mot" style="font-size:clamp(20px,2.6vw,30px)">Édition Madame</h3>
     <p class="descriptif" style="color:#9A9A9A">
       Première édition, sortie le 25 décembre 2025 et écoulée en quelques jours.
-      Visage au trait blanc, bouche rouge, lettrage en arc dans le dos.
+      Visible dans l'archive.
     </p>
     <span class="epuise">Épuisé</span>
   </div>
@@ -151,7 +151,11 @@
   </div>
   <div class="pied-bas">
     <span class="etiquette">Aurel — Bassin d'Arcachon</span>
-    <span class="etiquette">Mentions légales · CGV · Confidentialité</span>
+    <span class="etiquette">
+      <a href="legal.html#mentions" style="text-decoration:underline">Mentions légales</a> ·
+      <a href="legal.html#cgv" style="text-decoration:underline">CGV</a> ·
+      <a href="legal.html#confidentialite" style="text-decoration:underline">Confidentialité</a>
+    </span>
   </div>
 </footer>
 
@@ -180,15 +184,12 @@ if (heroMarque) {
   if (reduitMouvement) {
     heroMarque.style.opacity = '1';
   } else {
-    // entrée en fondu douce au chargement (transition CSS temporaire)
     heroMarque.style.transition = 'opacity 1.2s ease, transform 1.2s ease';
     heroMarque.style.transform = 'translateY(14px)';
     requestAnimationFrame(() => {
       heroMarque.style.opacity = '1';
       heroMarque.style.transform = 'translateY(0)';
     });
-    // une fois l'entrée terminée, on retire la transition pour que
-    // le fondu au scroll suive la position exacte, sans décalage
     setTimeout(() => {
       heroMarque.style.transition = 'none';
       majMarque();
