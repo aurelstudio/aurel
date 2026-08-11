@@ -121,7 +121,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   display:flex;align-items:center;justify-content:center;
   background:var(--encre);overflow:hidden;
 }
-.hero img{position:absolute;inset:0;object-position:50% 22%;opacity:.92}
+.hero img{position:absolute;inset:0;object-position:50% 15%;opacity:.92}
 .hero::after{
   content:'';position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(0,0,0,.42) 0%,rgba(0,0,0,.06) 34%,rgba(0,0,0,.05) 62%,rgba(0,0,0,.5) 100%);
