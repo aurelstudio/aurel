@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Deux nouveaux coupe-vent — AUREL</title>
+
+<!-- Aperçu de lien (Instagram, iMessage, etc.) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aurel">
+<meta property="og:title" content="Deux nouveaux coupe-vent — AUREL">
+<meta property="og:description" content="Avant de lancer la production, nous voulons savoir si vous êtes réellement intéressés.">
+<meta property="og:image" content="https://aurel.company/img/cv-kaki.jpg">
+<meta property="og:url" content="https://aurel.company/coupe-vent.html">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon-32.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="entete pose">
+  <a href="index.html" class="logo">Aurel</a>
+  <nav class="nav">
+    <a class="lien-bureau" href="boutique.html">Boutique</a>
+    <a class="lien-bureau" href="index.html#archive">Archive</a>
+    <a class="lien-bureau" href="histoire.html">Notre histoire</a>
+    <a class="lien-bureau" href="coupe-vent.html" aria-current="page">Coupe-vent</a>
+    <button class="burger" id="burger" aria-controls="menu">Menu</button>
+    <a href="produit.html#panier" aria-label="Panier, 0 article" id="lienPanier">Panier (0)</a>
+  </nav>
+</header>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <a href="index.html">Accueil</a>
+  <a href="boutique.html">Boutique</a>
+  <a href="index.html#archive">Archive</a>
+  <a href="histoire.html">Notre histoire</a>
+  <a href="coupe-vent.html">Coupe-vent</a>
+  <span class="etiquette">Instagram · @aurelstudio._</span>
+</div>
+
+<!-- Modale "Je suis intéressé" -->
+<div class="panier-fond" id="interetFond"></div>
+<aside class="panier-tiroir" id="interetTiroir" aria-hidden="true">
+  <div class="panier-entete">
+    <span class="etiquette">Je suis intéressé</span>
+    <button id="fermerInteret" aria-label="Fermer">✕</button>
+  </div>
+  <div class="panier-liste" style="padding-top:24px">
+    <p class="etiquette" id="interetModeleLabel" style="margin-bottom:18px;color:var(--encre);font-size:11px"></p>
+
+    <div id="interetFormulaire">
+      <div class="bloc" style="margin-top:0">
+        <span class="etiquette">Taille</span>
+        <div class="tailles" role="group" aria-label="Choisir une taille" id="interetTailles">
+          <button class="taille" data-taille="S" type="button">S</button>
+          <button class="taille" data-taille="M" type="button">M</button>
+          <button class="taille" data-taille="L" type="button">L</button>
+          <button class="taille" data-taille="XL" type="button">XL</button>
+        </div>
+      </div>
+      <div class="bloc">
+        <span class="etiquette">E-mail</span>
+        <input class="champ" type="email" id="interetEmail" placeholder="vous@exemple.fr" autocomplete="email">
+      </div>
+      <p class="paiement" style="margin-top:18px">Aucun paiement aujourd'hui. Nous mesurons simplement l'intérêt avant de lancer la production.</p>
+      <p class="etiquette" id="interetErreur" style="color:var(--rouge);margin-top:10px;display:none"></p>
+    </div>
+
+    <div id="interetConfirmation" style="display:none">
+      <p class="descriptif" style="margin-top:0">
+        Merci. Ton intérêt est enregistré. Si la production est lancée, tu seras
+        prévenu en priorité lors de l'ouverture des précommandes.
+      </p>
+    </div>
+  </div>
+  <div class="panier-pied">
+    <button class="bouton" id="interetValider">Confirmer mon intérêt</button>
+  </div>
+</aside>
+
+
+<main class="boutique" style="padding-bottom:0">
+
+  <div style="margin-bottom:clamp(40px,7vw,80px);max-width:60ch">
+    <span class="etiquette">Avant la production</span>
+    <h1 class="titre-page" style="margin-top:14px">Deux nouveaux<br>coupe-vent</h1>
+    <p class="descriptif" style="margin-top:24px;max-width:52ch">
+      Avant de lancer la production, nous voulons savoir si vous êtes réellement
+      intéressés. Aucun paiement aujourd'hui. Indique simplement le modèle et la
+      taille que tu serais susceptible d'acheter. Si la demande est suffisante,
+      nous ouvrirons ensuite les précommandes.
+    </p>
+  </div>
+
+  <!-- Coupe-vent 01 -->
+  <section class="produit-une reveal" style="margin-bottom:clamp(70px,11vw,130px)">
+    <div class="visuel">
+      <img src="img/cv-kaki.jpg" alt="Coupe-vent Aurel kaki, visage tracé au trait blanc sur la poitrine">
+    </div>
+    <div>
+      <span class="etiquette">Coupe-vent 01</span>
+      <h2 class="produit-titre">Kaki</h2>
+      <!-- ⚠️ Remplace XX,00 par ton prix envisagé -->
+      <p class="prix">XX,00 € <span class="accent">·</span> Tailles pressenties S · M · L · XL</p>
+      <p class="descriptif">
+        Kaki, capuche doublée noir, coupe droite. Un visage tracé à la main sur
+        la poitrine, dans l'esprit des sérigraphies Aurel.
+      </p>
+      <button class="bouton" data-model="cv01" data-nom="Coupe-vent 01 — Kaki" type="button">Je suis intéressé</button>
+    </div>
+  </section>
+
+  <!-- Coupe-vent 02 -->
+  <section class="produit-une reveal" style="margin-bottom:clamp(70px,11vw,130px)">
+    <div>
+      <span class="etiquette">Coupe-vent 02</span>
+      <h2 class="produit-titre">Beige</h2>
+      <!-- ⚠️ Remplace XX,00 par ton prix envisagé -->
+      <p class="prix">XX,00 € <span class="accent">·</span> Tailles pressenties S · M · L · XL</p>
+      <p class="descriptif">
+        Beige, même coupe, capuche doublée noir. Un visage esquissé au trait sur
+        la poitrine.
+      </p>
+      <button class="bouton" data-model="cv02" data-nom="Coupe-vent 02 — Beige" type="button">Je suis intéressé</button>
+    </div>
+    <div class="visuel">
+      <img src="img/cv-beige.jpg" alt="Coupe-vent Aurel beige, visage tracé au trait rouge sur la poitrine">
+    </div>
+  </section>
+
+  <div style="max-width:52ch;margin:0 auto clamp(70px,10vw,110px);text-align:center">
+    <span class="etiquette">60 intéressés. C'est le minimum nécessaire pour envisager le lancement de la production.</span>
+  </div>
+
+</main>
+
+<footer class="pied">
+  <div class="pied-haut">
+    <span class="pied-logo">Aurel</span>
+    <div class="colonnes">
+      <div>
+        <span class="etiquette">Aurel</span>
+        <ul>
+          <li><a href="histoire.html">Notre histoire</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="etiquette">Boutique</span>
+        <ul>
+          <li><a href="produit.html">Fleur Bleue</a></li>
+          <li><a class="lien-bureau" href="index.html#archive">Archive</a></li>
+          <li><a href="coupe-vent.html">Coupe-vent</a></li>
+          <li><a href="aide.html#tailles">Guide des tailles</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="etiquette">Aide</span>
+        <ul>
+          <li><a href="aide.html#livraison">Livraison</a></li>
+          <li><a href="aide.html#retours">Retours</a></li>
+          <li><a href="aide.html#contact">Nous écrire</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="etiquette">Suivre</span>
+        <ul>
+          <li><a href="https://instagram.com/aurelstudio._">Instagram</a></li>
+          <li><a href="boutique.html#alerte">Alerte drop</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="pied-bas">
+    <span class="etiquette">Aurel — Bassin d'Arcachon</span>
+    <span class="etiquette">
+      <a href="legal.html#mentions" style="text-decoration:underline">Mentions légales</a> ·
+      <a href="legal.html#cgv" style="text-decoration:underline">CGV</a> ·
+      <a href="legal.html#confidentialite" style="text-decoration:underline">Confidentialité</a>
+    </span>
+  </div>
+</footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC3XuO1s0XW95_DCEIRfiU7V6Nygm4pLc0",
+  authDomain: "aurel-coupevent.firebaseapp.com",
+  projectId: "aurel-coupevent",
+  storageBucket: "aurel-coupevent.firebasestorage.app",
+  messagingSenderId: "55621664951",
+  appId: "1:55621664951:web:f017f53791d8a5edfa8d32"
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+function sanitizeEmail(email){
+  return email.trim().toLowerCase().replace(/[^a-z0-9]/g, '_');
+}
+
+const fond = document.getElementById('interetFond');
+const tiroir = document.getElementById('interetTiroir');
+const modeleLabel = document.getElementById('interetModeleLabel');
+const formulaire = document.getElementById('interetFormulaire');
+const confirmation = document.getElementById('interetConfirmation');
+const emailInput = document.getElementById('interetEmail');
+const erreur = document.getElementById('interetErreur');
+const valider = document.getElementById('interetValider');
+const pied = document.querySelector('#interetTiroir .panier-pied');
+const taillesBtns = document.querySelectorAll('#interetTailles .taille');
+
+let modeleActuel = null;
+let tailleChoisie = null;
+
+taillesBtns.forEach(b => b.addEventListener('click', () => {
+  taillesBtns.forEach(x => x.setAttribute('aria-pressed','false'));
+  b.setAttribute('aria-pressed','true');
+  tailleChoisie = b.dataset.taille;
+}));
+
+function ouvrir(model, nom){
+  modeleActuel = model;
+  tailleChoisie = null;
+  taillesBtns.forEach(x => x.setAttribute('aria-pressed','false'));
+  emailInput.value = '';
+  erreur.style.display = 'none';
+  formulaire.style.display = '';
+  confirmation.style.display = 'none';
+  pied.style.display = '';
+  valider.textContent = 'Confirmer mon intérêt';
+  valider.disabled = false;
+  modeleLabel.textContent = nom;
+  fond.classList.add('ouvert');
+  tiroir.classList.add('ouvert');
+  tiroir.setAttribute('aria-hidden','false');
+}
+function fermer(){
+  fond.classList.remove('ouvert');
+  tiroir.classList.remove('ouvert');
+  tiroir.setAttribute('aria-hidden','true');
+}
+
+document.querySelectorAll('[data-model]').forEach(btn => {
+  btn.addEventListener('click', () => ouvrir(btn.dataset.model, btn.dataset.nom));
+});
+document.getElementById('fermerInteret').addEventListener('click', fermer);
+fond.addEventListener('click', fermer);
+
+valider.addEventListener('click', async () => {
+  const email = emailInput.value.trim();
+  if (!tailleChoisie) { erreur.textContent = 'Choisis une taille.'; erreur.style.display = 'block'; return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { erreur.textContent = 'Indique une adresse e-mail valide.'; erreur.style.display = 'block'; return; }
+  erreur.style.display = 'none';
+  valider.textContent = 'Envoi…';
+  valider.disabled = true;
+  try {
+    const docId = `${modeleActuel}_${sanitizeEmail(email)}`;
+    await setDoc(doc(db, 'interet_coupevent', docId), {
+      model: modeleActuel,
+      email: email,
+      size: tailleChoisie,
+      createdAt: serverTimestamp()
+    }, { merge: true });
+    formulaire.style.display = 'none';
+    pied.style.display = 'none';
+    confirmation.style.display = '';
+  } catch (e) {
+    erreur.textContent = "Une erreur est survenue, réessaie ou écris-nous à aurel.messagerie@gmail.com.";
+    erreur.style.display = 'block';
+    valider.textContent = 'Confirmer mon intérêt';
+    valider.disabled = false;
+  }
+});
+</script>
+
+<script>
+// Révélation au défilement
+const obs = new IntersectionObserver((entrees) => {
+  entrees.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vu'); obs.unobserve(e.target); } });
+}, {threshold:0.12});
+document.querySelectorAll('.reveal').forEach((el,i) => {
+  el.style.transitionDelay = (i % 3) * 90 + 'ms';
+  obs.observe(el);
+});
+
+// Badge panier (partagé avec la page produit)
+(function(){
+  try {
+    const p = JSON.parse(localStorage.getItem('aurel_panier')) || [];
+    const badge = document.getElementById('lienPanier');
+    if (badge) badge.textContent = `Panier (${p.length})`;
+  } catch(e){}
+})();
+
+// Menu mobile
+const menu = document.getElementById('menu');
+const burger = document.getElementById('burger');
+burger.addEventListener('click', () => {
+  const ouvert = menu.dataset.ouvert === 'true';
+  menu.dataset.ouvert = String(!ouvert);
+  menu.setAttribute('aria-hidden', String(ouvert));
+  burger.textContent = ouvert ? 'Menu' : 'Fermer';
+  document.body.classList.toggle('bloque', !ouvert);
+});
+</script>
+</body>
+</html>

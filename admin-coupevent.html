@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin — Coupe-vent — AUREL</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Petits ajouts propres à cette page admin, basés sur les variables du site */
+  .admin-corps{max-width:900px;margin:0 auto;padding:calc(var(--header) + 48px) var(--marge) 100px}
+  .admin-progres{border:1px solid var(--trait);padding:28px;margin:32px 0 48px}
+  .admin-barre{height:6px;background:#EFEFEF;margin-top:16px;overflow:hidden}
+  .admin-barre > div{height:100%;background:var(--encre);transition:width .4s ease}
+  .admin-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--trait);border:1px solid var(--trait);margin-bottom:48px}
+  .admin-case{background:#fff;padding:20px}
+  .admin-case .n{font-family:var(--display);font-size:28px;font-weight:700;display:block;margin-top:8px}
+  table.admin-table{width:100%;border-collapse:collapse;font-family:var(--util);font-size:12px}
+  table.admin-table th, table.admin-table td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--trait)}
+  table.admin-table th{text-transform:uppercase;letter-spacing:.08em;font-size:10px;color:var(--gris)}
+  #adminLogin{max-width:360px;margin:0 auto;padding-top:calc(var(--header) + 100px)}
+  #adminErreur{color:var(--rouge);display:none;margin-top:10px}
+</style>
+</head>
+<body>
+
+<header class="entete pose">
+  <a href="index.html" class="logo">Aurel</a>
+  <nav class="nav">
+    <span class="etiquette">Espace administrateur</span>
+  </nav>
+</header>
+
+<div id="adminLogin">
+  <span class="etiquette">Espace administrateur</span>
+  <h1 class="titre-page" style="margin-top:14px;font-size:clamp(24px,3.2vw,34px)">Coupe-vent</h1>
+  <div class="bloc" style="margin-top:28px">
+    <span class="etiquette">E-mail</span>
+    <input class="champ" type="email" id="adminEmail" autocomplete="username">
+  </div>
+  <div class="bloc">
+    <span class="etiquette">Mot de passe</span>
+    <input class="champ" type="password" id="adminPassword" autocomplete="current-password">
+  </div>
+  <p class="etiquette" id="adminErreur"></p>
+  <button class="bouton" id="adminConnexion" style="margin-top:20px">Se connecter</button>
+</div>
+
+<main class="admin-corps" id="adminCorps" style="display:none">
+
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px">
+    <div>
+      <span class="etiquette">Espace administrateur</span>
+      <h1 class="titre-page" style="margin-top:14px;font-size:clamp(24px,3.2vw,34px)">Intérêt — Coupe-vent</h1>
+    </div>
+    <button class="bouton bouton--secondaire" id="adminDeconnexion" style="width:auto;margin:0">Déconnexion</button>
+  </div>
+
+  <div class="admin-progres">
+    <span class="etiquette">Total des intéressés</span>
+    <p style="font-family:var(--display);font-size:40px;font-weight:700;margin-top:6px" id="adminTotal">—</p>
+    <span class="etiquette" id="adminSeuilTexte">— / 60 nécessaires pour lancer la production</span>
+    <div class="admin-barre"><div id="adminBarre" style="width:0%"></div></div>
+  </div>
+
+  <div class="admin-grille">
+    <div class="admin-case"><span class="etiquette">Coupe-vent 01 — Kaki</span><span class="n" id="adminCv01">—</span></div>
+    <div class="admin-case"><span class="etiquette">Coupe-vent 02 — Beige</span><span class="n" id="adminCv02">—</span></div>
+    <div class="admin-case"><span class="etiquette">Taille S</span><span class="n" id="adminS">—</span></div>
+    <div class="admin-case"><span class="etiquette">Taille M</span><span class="n" id="adminM">—</span></div>
+    <div class="admin-case"><span class="etiquette">Taille L</span><span class="n" id="adminL">—</span></div>
+    <div class="admin-case"><span class="etiquette">Taille XL</span><span class="n" id="adminXL">—</span></div>
+  </div>
+
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+    <span class="etiquette">Détail des inscriptions</span>
+    <button class="bouton bouton--fin etiquette" id="adminExport" style="width:auto;margin:0;color:var(--encre)">Exporter en CSV</button>
+  </div>
+
+  <div style="overflow-x:auto">
+    <table class="admin-table">
+      <thead>
+        <tr><th>Date</th><th>Modèle</th><th>Taille</th><th>E-mail</th></tr>
+      </thead>
+      <tbody id="adminTbody"></tbody>
+    </table>
+  </div>
+  <p class="etiquette" id="adminVide" style="display:none;margin-top:20px">Aucune inscription pour le moment.</p>
+
+</main>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC3XuO1s0XW95_DCEIRfiU7V6Nygm4pLc0",
+  authDomain: "aurel-coupevent.firebaseapp.com",
+  projectId: "aurel-coupevent",
+  storageBucket: "aurel-coupevent.firebasestorage.app",
+  messagingSenderId: "55621664951",
+  appId: "1:55621664951:web:f017f53791d8a5edfa8d32"
+};
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const loginView = document.getElementById('adminLogin');
+const corpsView = document.getElementById('adminCorps');
+const emailInput = document.getElementById('adminEmail');
+const passInput = document.getElementById('adminPassword');
+const erreur = document.getElementById('adminErreur');
+const btnConnexion = document.getElementById('adminConnexion');
+const btnDeconnexion = document.getElementById('adminDeconnexion');
+
+btnConnexion.addEventListener('click', async () => {
+  erreur.style.display = 'none';
+  btnConnexion.textContent = 'Connexion…';
+  btnConnexion.disabled = true;
+  try {
+    await signInWithEmailAndPassword(auth, emailInput.value.trim(), passInput.value);
+  } catch (e) {
+    erreur.textContent = "Identifiants incorrects.";
+    erreur.style.display = 'block';
+  }
+  btnConnexion.textContent = 'Se connecter';
+  btnConnexion.disabled = false;
+});
+
+btnDeconnexion.addEventListener('click', () => signOut(auth));
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    loginView.style.display = 'none';
+    corpsView.style.display = '';
+    chargerDonnees();
+  } else {
+    loginView.style.display = '';
+    corpsView.style.display = 'none';
+  }
+});
+
+async function chargerDonnees(){
+  const seuil = 60;
+  let rows = [];
+  try {
+    const q = query(collection(db, 'interet_coupevent'), orderBy('createdAt', 'desc'));
+    const snap = await getDocs(q);
+    snap.forEach(d => rows.push(d.data()));
+  } catch (e) {
+    // repli sans tri si l'index n'est pas prêt
+    const snap = await getDocs(collection(db, 'interet_coupevent'));
+    snap.forEach(d => rows.push(d.data()));
+  }
+
+  const total = rows.length;
+  const cv01 = rows.filter(r => r.model === 'cv01').length;
+  const cv02 = rows.filter(r => r.model === 'cv02').length;
+  const parTaille = { S:0, M:0, L:0, XL:0 };
+  rows.forEach(r => { if (parTaille[r.size] !== undefined) parTaille[r.size]++; });
+
+  document.getElementById('adminTotal').textContent = total;
+  document.getElementById('adminSeuilTexte').textContent = `${total} / ${seuil} nécessaires pour lancer la production`;
+  document.getElementById('adminBarre').style.width = Math.min(100, (total / seuil) * 100) + '%';
+  document.getElementById('adminCv01').textContent = cv01;
+  document.getElementById('adminCv02').textContent = cv02;
+  document.getElementById('adminS').textContent = parTaille.S;
+  document.getElementById('adminM').textContent = parTaille.M;
+  document.getElementById('adminL').textContent = parTaille.L;
+  document.getElementById('adminXL').textContent = parTaille.XL;
+
+  const tbody = document.getElementById('adminTbody');
+  const vide = document.getElementById('adminVide');
+  tbody.innerHTML = '';
+  if (total === 0) {
+    vide.style.display = 'block';
+  } else {
+    vide.style.display = 'none';
+    rows.forEach(r => {
+      const tr = document.createElement('tr');
+      const date = r.createdAt && r.createdAt.toDate ? r.createdAt.toDate().toLocaleDateString('fr-FR', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' }) : '—';
+      const nomModele = r.model === 'cv01' ? 'Coupe-vent 01 — Kaki' : (r.model === 'cv02' ? 'Coupe-vent 02 — Beige' : r.model);
+      tr.innerHTML = `<td>${date}</td><td>${nomModele}</td><td>${r.size || '—'}</td><td>${r.email || '—'}</td>`;
+      tbody.appendChild(tr);
+    });
+  }
+
+  document.getElementById('adminExport').onclick = () => {
+    const lignes = [['Date','Modele','Taille','Email']];
+    rows.forEach(r => {
+      const date = r.createdAt && r.createdAt.toDate ? r.createdAt.toDate().toISOString() : '';
+      lignes.push([date, r.model || '', r.size || '', r.email || '']);
+    });
+    const csv = lignes.map(l => l.map(v => `"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
+    const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `aurel-coupevent-interets-${new Date().toISOString().slice(0,10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+}
+</script>
+</body>
+</html>
