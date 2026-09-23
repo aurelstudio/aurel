@@ -19,6 +19,15 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
 <link rel="stylesheet" href="style.css">
+<style>
+  /* Petits ajouts propres à la section coupe-vent, basés sur les variables du site */
+  .coupevent-grille{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,3vw,28px)}
+  .coupevent-carte{background:none;border:0;padding:0;cursor:pointer;text-align:left;font:inherit;color:inherit;display:block;width:100%}
+  .coupevent-carte .visuel{display:block;aspect-ratio:4/5;overflow:hidden;background:#F2F2F2;margin-bottom:14px}
+  .coupevent-carte .visuel img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+  .coupevent-carte:hover .visuel img{transform:scale(1.03)}
+  @media (max-width:760px){.coupevent-grille{grid-template-columns:1fr;max-width:420px;margin:0 auto}}
+</style>
 </head>
 <body>
 
@@ -28,7 +37,6 @@
     <a class="lien-bureau" href="boutique.html">Boutique</a>
     <a class="lien-bureau" href="#archive">Archive</a>
     <a class="lien-bureau" href="histoire.html">Notre histoire</a>
-    <a class="lien-bureau" href="coupe-vent.html">Coupe-vent</a>
     <button class="burger" id="burger" aria-controls="menu">Menu</button>
     <a href="produit.html#panier" aria-label="Panier, 0 article" id="lienPanier">Panier (0)</a>
   </nav>
@@ -39,9 +47,49 @@
   <a href="boutique.html">Boutique</a>
   <a href="index.html#archive">Archive</a>
   <a href="histoire.html">Notre histoire</a>
-  <a href="coupe-vent.html">Coupe-vent</a>
   <span class="etiquette">Instagram · @aurelstudio._</span>
 </div>
+
+<!-- Modale "Je suis intéressé" (coupe-vent) -->
+<div class="panier-fond" id="interetFond"></div>
+<aside class="panier-tiroir" id="interetTiroir" aria-hidden="true">
+  <div class="panier-entete">
+    <span class="etiquette">Je suis intéressé</span>
+    <button id="fermerInteret" aria-label="Fermer">✕</button>
+  </div>
+  <div class="panier-liste" style="padding-top:24px">
+    <p class="etiquette" id="interetModeleLabel" style="margin-bottom:10px;color:var(--encre);font-size:11px"></p>
+    <p class="descriptif" id="interetDescriptif" style="margin-top:0;margin-bottom:22px"></p>
+
+    <div id="interetFormulaire">
+      <div class="bloc" style="margin-top:0">
+        <span class="etiquette">Taille</span>
+        <div class="tailles" role="group" aria-label="Choisir une taille" id="interetTailles">
+          <button class="taille" data-taille="S" type="button">S</button>
+          <button class="taille" data-taille="M" type="button">M</button>
+          <button class="taille" data-taille="L" type="button">L</button>
+          <button class="taille" data-taille="XL" type="button">XL</button>
+        </div>
+      </div>
+      <div class="bloc">
+        <span class="etiquette">E-mail</span>
+        <input class="champ" type="email" id="interetEmail" placeholder="vous@exemple.fr" autocomplete="email">
+      </div>
+      <p class="paiement" style="margin-top:18px">Aucun paiement aujourd'hui. Nous mesurons simplement l'intérêt avant de lancer la production.</p>
+      <p class="etiquette" id="interetErreur" style="color:var(--rouge);margin-top:10px;display:none"></p>
+    </div>
+
+    <div id="interetConfirmation" style="display:none">
+      <p class="descriptif" style="margin-top:0">
+        Merci. Ton intérêt est enregistré. Si la production est lancée, tu seras
+        prévenu en priorité lors de l'ouverture des précommandes.
+      </p>
+    </div>
+  </div>
+  <div class="panier-pied">
+    <button class="bouton" id="interetValider">Confirmer mon intérêt</button>
+  </div>
+</aside>
 
 
 <!-- ══ HERO ══ -->
@@ -52,6 +100,40 @@
     <span class="etiquette">Collection 02 — Été 2026<span class="petit-masque"> · Tirage limité</span></span>
     <span class="defiler etiquette"><i class="barre"></i>Défiler</span>
   </div>
+</section>
+
+<!-- ══ COUPE-VENT (sondage d'intérêt) ══ -->
+<section class="section" id="coupevent">
+  <div class="entete-section reveal">
+    <span class="etiquette">Avant la production</span>
+    <span class="etiquette">Trois coupe-vent à l'étude</span>
+  </div>
+
+  <div class="reveal" style="max-width:58ch;margin-bottom:clamp(28px,5vw,48px)">
+    <p class="descriptif">
+      Trois coupe-vent sont à l'étude. Aucun paiement aujourd'hui — cliquez sur
+      une pièce pour voir le détail et nous dire si elle vous intéresse.
+    </p>
+  </div>
+
+  <div class="coupevent-grille reveal">
+    <button class="coupevent-carte" type="button" data-model="cv01" data-nom="Coupe-vent — Beige">
+      <span class="visuel"><img src="img/cv-beige.jpg" alt="Coupe-vent beige, visage tracé en bordeaux sur la poitrine"></span>
+      <span class="etiquette">Beige</span>
+    </button>
+    <button class="coupevent-carte" type="button" data-model="cv02" data-nom="Coupe-vent — Kaki">
+      <span class="visuel"><img src="img/cv-kaki.jpg" alt="Coupe-vent kaki, visage tracé en blanc sur la poitrine"></span>
+      <span class="etiquette">Kaki</span>
+    </button>
+    <button class="coupevent-carte" type="button" data-model="cv03" data-nom="Coupe-vent — Kaki Visage">
+      <span class="visuel"><img src="img/cv-kaki-face.jpg" alt="Coupe-vent kaki, grand visage dessiné sur toute la poitrine"></span>
+      <span class="etiquette">Kaki — Visage</span>
+    </button>
+  </div>
+
+  <p class="etiquette" style="margin-top:clamp(28px,5vw,44px);text-align:center">
+    60 intéressés par un modèle. C'est le minimum pour envisager sa production.
+  </p>
 </section>
 
 <!-- ══ EN VENTE ══ -->
@@ -71,7 +153,7 @@
 
   <div class="produit-une">
     <a href="produit.html" class="visuel reveal">
-      <img src="img/fb-garage.jpg" alt="T-shirt Fleur Bleue, sérigraphie bleue au dos" style="object-position:34% 50%">
+      <img src="img/fb-mannequin-face.jpg" alt="T-shirt Fleur Bleue porté, vu de face">
     </a>
     <div class="reveal">
       <span class="etiquette">Édition Fleur Bleue</span>
@@ -145,7 +227,6 @@
         <ul>
           <li><a href="produit.html">Fleur Bleue</a></li>
           <li><a class="lien-bureau" href="#archive">Archive</a></li>
-          <li><a href="coupe-vent.html">Coupe-vent</a></li>
           <li><a href="aide.html#tailles">Guide des tailles</a></li>
         </ul>
       </div>
@@ -175,6 +256,108 @@
     </span>
   </div>
 </footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC3XuO1s0XW95_DCEIRfiU7V6Nygm4pLc0",
+  authDomain: "aurel-coupevent.firebaseapp.com",
+  projectId: "aurel-coupevent",
+  storageBucket: "aurel-coupevent.firebasestorage.app",
+  messagingSenderId: "55621664951",
+  appId: "1:55621664951:web:f017f53791d8a5edfa8d32"
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const modeles = {
+  cv01: "Beige, capuche doublée noir. Un visage tracé en fin trait bordeaux sur la poitrine.",
+  cv02: "Kaki, capuche doublée noir. Le même visage, tracé en blanc.",
+  cv03: "Kaki, un visage dessiné en grand format sur toute la poitrine, moitié trait blanc, moitié silhouette noire."
+};
+
+function sanitizeEmail(email){
+  return email.trim().toLowerCase().replace(/[^a-z0-9]/g, '_');
+}
+
+const fond = document.getElementById('interetFond');
+const tiroir = document.getElementById('interetTiroir');
+const modeleLabel = document.getElementById('interetModeleLabel');
+const descriptif = document.getElementById('interetDescriptif');
+const formulaire = document.getElementById('interetFormulaire');
+const confirmation = document.getElementById('interetConfirmation');
+const emailInput = document.getElementById('interetEmail');
+const erreur = document.getElementById('interetErreur');
+const valider = document.getElementById('interetValider');
+const pied = document.querySelector('#interetTiroir .panier-pied');
+const taillesBtns = document.querySelectorAll('#interetTailles .taille');
+
+let modeleActuel = null;
+let tailleChoisie = null;
+
+taillesBtns.forEach(b => b.addEventListener('click', () => {
+  taillesBtns.forEach(x => x.setAttribute('aria-pressed','false'));
+  b.setAttribute('aria-pressed','true');
+  tailleChoisie = b.dataset.taille;
+}));
+
+function ouvrir(model, nom){
+  modeleActuel = model;
+  tailleChoisie = null;
+  taillesBtns.forEach(x => x.setAttribute('aria-pressed','false'));
+  emailInput.value = '';
+  erreur.style.display = 'none';
+  formulaire.style.display = '';
+  confirmation.style.display = 'none';
+  pied.style.display = '';
+  valider.textContent = 'Confirmer mon intérêt';
+  valider.disabled = false;
+  modeleLabel.textContent = nom;
+  descriptif.textContent = modeles[model] || '';
+  fond.classList.add('ouvert');
+  tiroir.classList.add('ouvert');
+  tiroir.setAttribute('aria-hidden','false');
+}
+function fermer(){
+  fond.classList.remove('ouvert');
+  tiroir.classList.remove('ouvert');
+  tiroir.setAttribute('aria-hidden','true');
+}
+
+document.querySelectorAll('[data-model]').forEach(btn => {
+  btn.addEventListener('click', () => ouvrir(btn.dataset.model, btn.dataset.nom));
+});
+document.getElementById('fermerInteret').addEventListener('click', fermer);
+fond.addEventListener('click', fermer);
+
+valider.addEventListener('click', async () => {
+  const email = emailInput.value.trim();
+  if (!tailleChoisie) { erreur.textContent = 'Choisis une taille.'; erreur.style.display = 'block'; return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { erreur.textContent = 'Indique une adresse e-mail valide.'; erreur.style.display = 'block'; return; }
+  erreur.style.display = 'none';
+  valider.textContent = 'Envoi…';
+  valider.disabled = true;
+  try {
+    const docId = `${modeleActuel}_${sanitizeEmail(email)}`;
+    await setDoc(doc(db, 'interet_coupevent', docId), {
+      model: modeleActuel,
+      email: email,
+      size: tailleChoisie,
+      createdAt: serverTimestamp()
+    }, { merge: true });
+    formulaire.style.display = 'none';
+    pied.style.display = 'none';
+    confirmation.style.display = '';
+  } catch (e) {
+    erreur.textContent = "Une erreur est survenue, réessaie ou écris-nous à aurel.messagerie@gmail.com.";
+    erreur.style.display = 'block';
+    valider.textContent = 'Confirmer mon intérêt';
+    valider.disabled = false;
+  }
+});
+</script>
 
 <script>
 // Header : transparent sur le hero, opaque ensuite
