@@ -9,7 +9,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Aurel">
 <meta property="og:title" content="T-shirt Fleur Bleue — AUREL">
-<meta property="og:description" content="35,00 € · Coton épais, coupe droite. Bouquet dessiné au trait, sérigraphié bleu, signé une nuit d'été.">
+<meta property="og:description" content="28,00 € (Black Friday) · Coton épais, coupe droite. Bouquet dessiné au trait, sérigraphié bleu, signé une nuit d'été.">
 <meta property="og:image" content="https://aurel.company/img/fb-garage.jpg">
 <meta property="og:url" content="https://aurel.company/produit.html">
 <meta name="twitter:card" content="summary_large_image">
@@ -73,7 +73,8 @@
   <div class="panneau">
     <span class="etiquette">Collection 02 — Fleur Bleue</span>
     <h1 class="fiche-titre">T-shirt<br>Fleur Bleue</h1>
-    <p class="prix">35,00 € <span class="accent">·</span> <span style="font-size:12px">+ 4,90 € livraison</span></p>
+    <p class="prix"><s style="color:var(--gris)">35,00 €</s> 28,00 € <span class="accent">·</span> <span style="font-size:12px">+ 4,90 € livraison</span></p>
+    <p class="etiquette" style="margin:-6px 0 18px">Black Friday — jusqu'au 30 novembre</p>
 
     <div class="bloc">
       <div style="display:flex;justify-content:space-between;align-items:baseline">
@@ -101,7 +102,7 @@
         <input class="champ" type="text" id="codePostal" placeholder="Code postal" autocomplete="postal-code" style="flex:1">
         <input class="champ" type="text" id="ville" placeholder="Ville" autocomplete="address-level2" style="flex:2">
       </div>
-      <button class="bouton" id="reserver">Réserver — 39,90 €</button>
+      <button class="bouton" id="reserver">Réserver — 32,90 €</button>
       <p class="paiement" id="statutReservation">Total avec livraison. Instructions de paiement envoyées par e-mail après réservation.</p>
       <p class="paiement">Vous pouvez aussi payer directement via <a href="https://paypal.me/glarrabure" style="text-decoration:underline">PayPal</a></p>
     </div>
@@ -266,7 +267,7 @@ function majAffichagePanier(){
         <div class="infos">
           <h3>T-shirt Fleur Bleue</h3>
           <p class="etiquette" style="margin-top:6px">Taille ${it.taille}</p>
-          <p class="prix" style="margin-top:6px;font-size:12px">35,00 €</p>
+          <p class="prix" style="margin-top:6px;font-size:12px">28,00 €</p>
           <span class="retirer" data-idx="${idx}">Retirer</span>
         </div>
       </div>
@@ -278,7 +279,7 @@ function majAffichagePanier(){
       ecrirePanier(p);
     }));
   }
-  const sousTotal = items.length * 35;
+  const sousTotal = items.length * 28;
   const total = items.length ? sousTotal + 4.90 : 0;
   document.getElementById('panierTotal').textContent = total.toFixed(2).replace('.',',') + ' €';
 }
@@ -322,8 +323,8 @@ boutonReserver.addEventListener('click', () => {
   boutonReserver.textContent = 'Envoi en cours…';
   boutonReserver.disabled = true;
 
-  const items = panier.map(it => `T-shirt Fleur Bleue — Taille ${it.taille} — 35,00 €`).join('<br>');
-  const sousTotal = panier.length * 35;
+  const items = panier.map(it => `T-shirt Fleur Bleue — Taille ${it.taille} — 28,00 €`).join('<br>');
+  const sousTotal = panier.length * 28;
   const livraison = 4.90;
   const total = sousTotal + livraison;
 
@@ -345,7 +346,7 @@ boutonReserver.addEventListener('click', () => {
     majAffichagePanier();
   }).catch(() => {
     statutReservation.textContent = 'Une erreur est survenue. Écrivez-nous directement à aurel.messagerie@gmail.com.';
-    boutonReserver.textContent = 'Réserver — 39,90 €';
+    boutonReserver.textContent = 'Réserver — 32,90 €';
     boutonReserver.disabled = false;
   });
 });
